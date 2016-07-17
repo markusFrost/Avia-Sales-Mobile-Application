@@ -10,21 +10,13 @@
 
 
     <LinearLayout
-        android:id="@+id/registrationLayout"
+        android:id="@+id/loginLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/registrationEditName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/EditTextStyle"
-        android:hint="@string/registrationEnterName"
-        />
-
-    <EditText
-        android:id="@+id/registrationEditEmail"
+        android:id="@+id/loginEditEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/EditTextStyle"
@@ -32,8 +24,9 @@
         android:hint="@string/registrationEnterEmail"
         />
 
+
     <EditText
-        android:id="@+id/registrationEditPasswoed"
+        android:id="@+id/loginEditPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/EditTextStyle"
@@ -42,11 +35,11 @@
         />
 
         <TextView
-            android:id="@+id/registrationTvError"
+            android:id="@+id/loginTvError"
             android:textColor="@android:color/holo_red_dark"
             android:text="Error"
-            android:layout_marginTop="10dp"
             android:textSize="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>
@@ -59,14 +52,14 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/registrationButtonOk"
+            android:id="@+id/loginButtonOk"
             android:text="@android:string/ok"
             style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/registrationButtonCancel"
+            android:id="@+id/loginButtonCancel"
             android:text="@android:string/cancel"
             style="@style/ButtonStyle"
             android:layout_width="wrap_content"
@@ -82,7 +75,7 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/registrationProgressBar"
+            android:id="@+id/loginProgressBar"
             style="?android:attr/progressBarStyleLarge"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
