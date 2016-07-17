@@ -18,5 +18,8 @@
     <string name="errorNoConnection">No Internet connection</string>
     <string name="authorisation">Authorization</string>
     <string name="errorCanNotLogin">Can not login</string>
+    <string name="returnFlight">Flight back</string>
+    <string name="city_from">City From</string>
+    <string name="city_to">City To</string>
 
 </resources>
