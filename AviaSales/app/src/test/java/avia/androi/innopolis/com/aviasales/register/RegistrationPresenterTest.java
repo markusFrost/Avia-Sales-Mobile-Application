@@ -31,6 +31,7 @@ public class RegistrationPresenterTest {
     @Test
     public void testRegister() throws Exception {
 
+
     }
 
     @Test
