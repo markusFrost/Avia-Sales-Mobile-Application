@@ -76,14 +76,14 @@
 
                 <TextView
                     android:id="@+id/search_flight_price_pert_ticket"
-                    android:text="200$"
+                    android:text="200"
                     android:textSize="15dp"
                     android:textColor="@android:color/holo_purple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:text=" per ticket"
+                    android:text="$ per ticket"
                     android:textSize="15dp"
                     android:textColor="@android:color/holo_purple"
                     android:layout_width="wrap_content"
@@ -98,6 +98,13 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Free place count: "
+                    android:textSize="15dp"
+                    android:textColor="@android:color/holo_purple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/search_flight_free_place_count"
