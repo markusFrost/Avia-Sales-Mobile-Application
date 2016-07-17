@@ -12,7 +12,6 @@
     <LinearLayout
         android:id="@+id/registrationLayout"
         android:orientation="vertical"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -37,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/EditTextStyle"
+        android:inputType="textPassword"
         android:hint="@string/registrationEnterPassword"
         />
 
@@ -44,6 +44,7 @@
             android:id="@+id/registrationTvError"
             android:textColor="@android:color/holo_red_dark"
             android:text="Error"
+            android:layout_marginTop="10dp"
             android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

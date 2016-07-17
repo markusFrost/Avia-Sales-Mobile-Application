@@ -16,11 +16,11 @@
         android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/loginEditName"
+        android:id="@+id/loginEditEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/EditTextStyle"
-        android:hint="@string/registrationEnterName"
+        android:hint="@string/registrationEnterEmail"
         />
 
 
@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/EditTextStyle"
+        android:inputType="textPassword"
         android:hint="@string/registrationEnterPassword"
         />
 
@@ -37,6 +38,7 @@
             android:textColor="@android:color/holo_red_dark"
             android:text="Error"
             android:textSize="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>

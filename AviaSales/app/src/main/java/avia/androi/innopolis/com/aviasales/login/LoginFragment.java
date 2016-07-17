@@ -17,7 +17,7 @@ import avia.androi.innopolis.com.aviasales.models.User;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
-    private EditText mEditName, mEditPassword;
+    private EditText mEditEmail, mEditPassword;
 
     private Button mButtonOk, mButtonCancel;
 
@@ -43,7 +43,7 @@ public class LoginFragment extends Fragment implements ILoginView {
 
         View view = inflater.inflate(R.layout.fragment_login, null);
 
-        mEditName = (EditText) view.findViewById(R.id.loginEditName);
+        mEditEmail = (EditText) view.findViewById(R.id.loginEditEmail);
         mEditPassword = (EditText) view.findViewById(R.id.loginEditPassword);
 
         mTextViewError = (TextView) view.findViewById(R.id.loginTvError);
@@ -73,12 +73,12 @@ public class LoginFragment extends Fragment implements ILoginView {
 
         mTextViewError.setVisibility(View.GONE);
 
-        String name = mEditName.getText().toString();
+        String email = mEditEmail.getText().toString();
         String password = mEditPassword.getText().toString();
 
-        if (name == null || name.isEmpty()) {
+        if (email == null || email.isEmpty()) {
 
-            setErrorMessage(R.string.errorEmptyName);
+            setErrorMessage(R.string.errorEmptyEmail);
 
             return;
         }
@@ -92,7 +92,7 @@ public class LoginFragment extends Fragment implements ILoginView {
 
         User user = new User();
 
-        user.setName(name);
+        user.setEmail(email);
         user.setPassword(password);
 
         mPresenter.login(user);
