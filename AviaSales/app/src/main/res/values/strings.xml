@@ -11,5 +11,10 @@
     <string name="registrationEnterEmail">Enter your email</string>
     <string name="registrationEnterPassword">Enter your password</string>
     <string name="registration">Registration</string>
+    <string name="errorEmptyName">Please enter your name</string>
+    <string name="errorEmptyEmail">Please enter your email</string>
+    <string name="errorEmptyPassword">Please enter your password</string>
+    <string name="errorCanNotRegister">Can not register</string>
+    <string name="errorNoConnection">No Internet connection</string>
 
 </resources>
