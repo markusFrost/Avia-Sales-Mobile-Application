@@ -1,6 +1,8 @@
 package avia.androi.innopolis.com.aviasales.interfaces;
 
+import avia.androi.innopolis.com.aviasales.models.User;
+
 public interface ILoader<T> {
 
-    void load(T item);
+    void load(User item);
 }

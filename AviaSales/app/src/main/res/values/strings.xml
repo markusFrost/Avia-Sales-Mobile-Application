@@ -16,5 +16,7 @@
     <string name="errorEmptyPassword">Please enter your password</string>
     <string name="errorCanNotRegister">Can not register</string>
     <string name="errorNoConnection">No Internet connection</string>
+    <string name="authorisation">Authorization</string>
+    <string name="errorCanNotLogin">Can not login</string>
 
 </resources>

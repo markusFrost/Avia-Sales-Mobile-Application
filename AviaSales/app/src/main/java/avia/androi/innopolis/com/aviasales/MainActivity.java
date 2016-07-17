@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
-import avia.androi.innopolis.com.aviasales.register.RegisterFragment;
+import avia.androi.innopolis.com.aviasales.login.LoginFragment;
 import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 
 public class MainActivity extends BaseActivity
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment fragment = RegisterFragment.newInstance();
+        Fragment fragment = LoginFragment.newInstance();
 
         FragmentUtils.setFragment(fragment, MainActivity.this);
     }

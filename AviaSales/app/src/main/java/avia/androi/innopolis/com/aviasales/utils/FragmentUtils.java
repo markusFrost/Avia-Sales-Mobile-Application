@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
+import avia.androi.innopolis.com.aviasales.login.LoginFragment;
 import avia.androi.innopolis.com.aviasales.register.RegisterFragment;
 
 public class FragmentUtils {
@@ -13,6 +14,9 @@ public class FragmentUtils {
         int id = 0;
         if (fragment instanceof RegisterFragment){
             id = R.string.registration;
+        }
+        else if (fragment instanceof LoginFragment){
+            id = R.string.authorisation;
         }
 
         if (id != 0) {
