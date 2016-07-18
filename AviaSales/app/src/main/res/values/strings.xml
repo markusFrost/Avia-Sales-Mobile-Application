@@ -21,6 +21,8 @@
     <string name="returnFlight">Flight back</string>
     <string name="city_from">City From</string>
     <string name="city_to">City To</string>
-    <string name="trip_without_transpher">Trips without transpher</string>
+    <string name="trip_without_transpher">Trips without transphers</string>
+    <string name="trip_with_transpher">Trips with transphers</string>
+    <string name="ticket_number">Ticket №</string>
 
 </resources>

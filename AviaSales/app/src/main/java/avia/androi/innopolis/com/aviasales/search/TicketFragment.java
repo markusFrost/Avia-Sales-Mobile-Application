@@ -13,6 +13,7 @@ import java.util.List;
 
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.City;
+import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 
@@ -49,15 +50,26 @@ public class TicketFragment extends Fragment implements ITicketView {
             listFlight.add(flight);
         }
 
+        Counter index = new Counter();
+        index.setCount(0);
 
         LinearLayout container = (LinearLayout) view.findViewById(R.id.search_container);
 
         View line = ViewUtils.createHelpView(getActivity());
 
-        container.addView(searchPanel, 0);
-        container.addView(line, 1);
+        container.addView(searchPanel, index.getCount());
+        index.increment();
+        container.addView(line,index.getCount() );
 
-       ViewUtils.formTripWithoutTransphers(getActivity(), listFlight, container);
+       ViewUtils.formTripWithoutTransphers(getActivity(), listFlight, container, index);
+
+        List<List<Flight>> listList = new ArrayList<>();
+        for (int i = 1; i <= 10; i++){
+
+            listList.add(listFlight);
+        }
+
+        ViewUtils.formTripWithTransphers(getActivity(), listList, container, index);
 
         return view;
     }
