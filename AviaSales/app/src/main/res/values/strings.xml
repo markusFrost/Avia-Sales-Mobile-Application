@@ -26,5 +26,6 @@
     <string name="ticket_number">Ticket №</string>
     <string name="trips_back">Trips back</string>
     <string name="clear">Clear</string>
+    <string name="booking_number">Booking №</string>
 
 </resources>

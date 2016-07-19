@@ -106,13 +106,13 @@ public abstract class BaseFlightsLoader {
             index.increment();
             container.addView(line, index.getCount());
 
-            designTripWIthTranspers(activity, list, container, index);
+            designTripWIthTranspers(list, container, index);
 
             ticketsCount++;
         }
     }
 
-    public  void designTripWIthTranspers(Activity activity, List<Flight> listFlights, LinearLayout container, Counter index){
+    public  void designTripWIthTranspers( List<Flight> listFlights, LinearLayout container, Counter index){
 
         for (int i = 0; i < listFlights.size(); i++){
 
@@ -148,7 +148,7 @@ public abstract class BaseFlightsLoader {
             LinearLayout bottomDivider = (LinearLayout) flight_view.findViewById(R.id.search_flight_bottom_divider);
             topDivider.setVisibility(View.VISIBLE);
 
-            if (i == 0){
+            if (i == 0 && listFlights.size() > 1){
 
                 topDivider.setBackgroundColor(Color.RED);
 
@@ -156,7 +156,7 @@ public abstract class BaseFlightsLoader {
 
                 layoutParams.height = 5;
             }
-            else if ( i == listFlights.size() - 1){
+            else if ( i == listFlights.size() - 1 && listFlights.size() > 1){
 
                 bottomDivider.setBackgroundColor(Color.RED);
 

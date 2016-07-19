@@ -1,14 +1,16 @@
 package avia.androi.innopolis.com.aviasales.models;
 
+import java.util.UUID;
+
 public class BaseEntity {
 
-    private String id;
+    private UUID id;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }
