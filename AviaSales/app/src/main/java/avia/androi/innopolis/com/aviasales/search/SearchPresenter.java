@@ -24,6 +24,8 @@ public class SearchPresenter implements ISearchPresenter {
     public void search(FlightRequest request) {
 
         mSearchLoader.load(request);
+
+        iView.showProgressBar();
     }
 
     @Override
@@ -60,16 +62,20 @@ public class SearchPresenter implements ISearchPresenter {
 
         }
 
+        iView.hideProgressBar();
+
 
     }
 
     @Override
     public void onServerFail() {
 
+        iView.hideProgressBar();
     }
 
     @Override
     public void onConnectionFail() {
 
+        iView.hideProgressBar();
     }
 }

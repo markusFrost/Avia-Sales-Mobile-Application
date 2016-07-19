@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class TicketFragment extends Fragment implements ITicketView {
     View view;
     LinearLayout container;
     Counter index;
+    ProgressBar pb;
+    ScrollView mScrollView;
 
     @Nullable
     @Override
@@ -66,6 +70,11 @@ public class TicketFragment extends Fragment implements ITicketView {
             }
         });
 
+        mScrollView = (ScrollView) view.findViewById(R.id.search_scroll_view);
+
+        pb = (ProgressBar) view.findViewById(R.id.search_progress_bar);
+        hideProgressBar();
+
         return view;
     }
 
@@ -74,11 +83,15 @@ public class TicketFragment extends Fragment implements ITicketView {
     @Override
     public void showProgressBar() {
 
+        mScrollView.setVisibility(View.GONE);
+        pb.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
 
+        mScrollView.setVisibility(View.VISIBLE);
+        pb.setVisibility(View.GONE);
     }
 
     @Override
