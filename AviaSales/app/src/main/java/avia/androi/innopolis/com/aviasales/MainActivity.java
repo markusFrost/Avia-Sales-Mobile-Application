@@ -132,9 +132,9 @@ public class MainActivity extends BaseActivity
 
         User user = ShPrefUtils.getUser();
 
-        tvName.setText("djfdf");
+        tvName.setText(user.getName());
 
-        //tvEmail.setText(user.getEmail());
+        tvEmail.setText(user.getEmail());
 
         navigationView.addHeaderView(view);
     }
