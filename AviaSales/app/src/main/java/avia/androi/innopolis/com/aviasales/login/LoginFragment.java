@@ -12,14 +12,19 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import avia.androi.innopolis.com.aviasales.MainActivity;
 import avia.androi.innopolis.com.aviasales.R;
+import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.register.RegisterFragment;
+import avia.androi.innopolis.com.aviasales.search.TicketFragment;
+import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
     private EditText mEditEmail, mEditPassword;
 
-    private Button mButtonOk, mButtonCancel;
+    private Button mButtonOk, mButtonRegistration;
 
     private TextView mTextViewError;
 
@@ -55,6 +60,7 @@ public class LoginFragment extends Fragment implements ILoginView {
         hideProgressBar();
 
         mButtonOk = (Button) view.findViewById(R.id.loginButtonOk);
+        mButtonRegistration = (Button) view.findViewById(R.id.loginButtonRegister);
 
 
         mButtonOk.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +71,27 @@ public class LoginFragment extends Fragment implements ILoginView {
             }
         });
 
+        mButtonRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment fragment = RegisterFragment.newInstance();
+
+                MainActivity activity = (MainActivity) getActivity();
+
+                activity.showFragment(fragment);
+
+            }
+        });
+
 
         return view;
     }
 
     private void validateData() {
+
+        mEditEmail.setText("and@mail");
+        mEditPassword.setText("1234");
 
         mTextViewError.setVisibility(View.GONE);
 
@@ -101,6 +123,8 @@ public class LoginFragment extends Fragment implements ILoginView {
     @Override
     public void onLoginSuccess() {
 
+        Fragment fragment = TicketFragment.newInstance();
+        FragmentUtils.setFragment(fragment, (BaseActivity) getActivity());
     }
 
     @Override

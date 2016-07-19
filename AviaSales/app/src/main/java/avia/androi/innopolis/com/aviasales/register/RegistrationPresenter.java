@@ -3,6 +3,7 @@ package avia.androi.innopolis.com.aviasales.register;
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.database.IAviaSalesDatabase;
 import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
 
 public class RegistrationPresenter implements IRegistrationPresenter {
 
@@ -39,7 +40,9 @@ public class RegistrationPresenter implements IRegistrationPresenter {
     }
 
     @Override
-    public void onServerSuccess() {
+    public void onServerSuccess(User user) {
+
+        ShPrefUtils.setUser(user);
 
         iView.hideProgressBar();
         iView.onRegistrationSuccess();

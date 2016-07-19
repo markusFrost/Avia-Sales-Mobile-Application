@@ -1,20 +1,17 @@
 package avia.androi.innopolis.com.aviasales.models;
 
-public class User {
+import com.google.gson.annotations.SerializedName;
 
-    private String mId;
+public class User extends BaseEntity{
+
+    @SerializedName("name")
     private String mName;
+
+    @SerializedName("email")
     private String mEmail;
+
+    @SerializedName("password")
     private String mPassword;
-
-
-    public String getId() {
-        return mId;
-    }
-
-    public void setId(String id) {
-        mId = id;
-    }
 
     public String getName() {
         return mName;

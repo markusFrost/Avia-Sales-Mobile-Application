@@ -1,5 +1,7 @@
 package avia.androi.innopolis.com.aviasales.cancel;
 
+import avia.androi.innopolis.com.aviasales.models.User;
+
 public class UndoBookingPresenter implements IUndoBookingPresenter {
     @Override
     public void undoBooking() {
@@ -7,7 +9,7 @@ public class UndoBookingPresenter implements IUndoBookingPresenter {
     }
 
     @Override
-    public void onServerSuccess() {
+    public void onServerSuccess(User resutUser) {
 
     }
 

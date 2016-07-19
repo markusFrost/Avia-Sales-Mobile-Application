@@ -1,5 +1,7 @@
 package avia.androi.innopolis.com.aviasales.search;
 
+import avia.androi.innopolis.com.aviasales.models.User;
+
 public class SearchPresenter implements ISearchPresenter {
     @Override
     public void search() {
@@ -7,7 +9,7 @@ public class SearchPresenter implements ISearchPresenter {
     }
 
     @Override
-    public void onServerSuccess() {
+    public void onServerSuccess(User resutUser) {
 
     }
 

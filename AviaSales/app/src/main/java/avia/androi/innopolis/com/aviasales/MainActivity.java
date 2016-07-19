@@ -9,19 +9,34 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
+import avia.androi.innopolis.com.aviasales.main_presenters.IMainView;
+import avia.androi.innopolis.com.aviasales.main_presenters.MainActivityPresenter;
+import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
+import avia.androi.innopolis.com.aviasales.objects.AppContext;
 import avia.androi.innopolis.com.aviasales.search.TicketFragment;
 import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
+import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, IMainView {
+
+    private MainActivityPresenter mPresenter;
+
+    private  NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPresenter = new MainActivityPresenter(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,11 +46,22 @@ public class MainActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment fragment = BookingHistoryFragment.newInstance();
-        FragmentUtils.setFragment(fragment, MainActivity.this);
+        mPresenter.chooseRightFragment();
+
+
+        FlightRequest request = new FlightRequest();
+
+        request.setCityFrom("Moskau");
+        request.setCityTo("Tokio");
+        request.setDateDeparture(System.currentTimeMillis());
+        request.setRoundTrip(false);
+
+        String json = AppContext.getGson().toJson(request);
+
+        int len = json.length();
     }
 
 
@@ -78,22 +104,51 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Fragment fragment = null;
+
         if (id == R.id.nav_search_flight) {
 
-            Fragment fragment = TicketFragment.newInstance();
-            FragmentUtils.setFragment(fragment, MainActivity.this);
+            fragment = TicketFragment.newInstance();
         }
         else if (id == R.id.nav_booking_history) {
 
-            Fragment fragment = BookingHistoryFragment.newInstance();
-            FragmentUtils.setFragment(fragment, MainActivity.this);
+            fragment = BookingHistoryFragment.newInstance();
         }
         else if (id == R.id.nav_logout) {
 
         }
 
+        showFragment(fragment);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showFragment(Fragment fragment) {
+
+        if (fragment != null) {
+
+            FragmentUtils.setFragment(fragment, MainActivity.this);
+        }
+    }
+
+    @Override
+    public void initializeNavDrawer() {
+
+        View view = getLayoutInflater().inflate(R.layout.nav_header_main, null);
+
+        TextView tvName = (TextView) view.findViewById(R.id.nav_header_name);
+
+        TextView tvEmail = (TextView) view.findViewById(R.id.nav_header_email);
+
+        User user = ShPrefUtils.getUser();
+
+        tvName.setText(user.getName());
+
+        tvEmail.setText(user.getEmail());
+
+        navigationView.addHeaderView(view);
     }
 }
