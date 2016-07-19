@@ -30,13 +30,13 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
 
         List<Booking> listBooking = new ArrayList<>();
 
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 3; i++) {
             List<Flight> listFlightsTo = new ArrayList<>();
             List<Flight> listFlightsBack = new ArrayList<>();
 
             UUID guid = HelpUtils.generateGUID();
 
-            for (int j = 1; j <= 1; j++) {
+            for (int j = 1; j <= 2; j++) {
 
                 City cityFrom = new City();
                 cityFrom.setName("CityFrom " + i);

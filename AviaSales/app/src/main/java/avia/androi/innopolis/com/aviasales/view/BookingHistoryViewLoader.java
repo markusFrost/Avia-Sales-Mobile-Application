@@ -58,7 +58,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
 
         TextView tv = (TextView)viewTranspherType.findViewById(R.id.search_tv_transfer_name);
 
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
         tv.setTextColor(Color.GRAY);
         tv.setText(msg);
 
