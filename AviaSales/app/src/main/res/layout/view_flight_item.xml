@@ -10,6 +10,7 @@
     <LinearLayout
         android:id="@+id/search_flight_container"
         android:layout_margin="15dp"
+        android:background="@drawable/flight_item_selector"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -16,6 +16,9 @@ import avia.androi.innopolis.com.aviasales.models.Flight;
 
 public class ViewUtils {
 
+    public static final int FLIGHT_ID = 123;
+    public static final int FLIGHTS_IDS = 574954;
+
     public static void formTripWithoutTransphers(Activity activity, List<Flight> listFlight, LinearLayout container, Counter index){
 
         View helpView = createHelpView(activity);
@@ -57,6 +60,8 @@ public class ViewUtils {
 
             tvPricePerTicket.setText(flight.getPricePerTicket() + "");
             tvFreePlaceCount.setText(flight.getFreePlaceCount() + "");
+
+            flight_view.setTag(FLIGHT_ID, flight.getId());
 
             container.addView(flight_view, index.getCount());
             index.increment();
@@ -166,6 +171,8 @@ public class ViewUtils {
 
                 layoutParams.height = 1;
             }
+
+            flight_view.setTag(FLIGHTS_IDS, HelpUtils.getListIds(listFlights));
 
             container.addView(flight_view, index.getCount());
             index.increment();

@@ -1,6 +1,6 @@
 package avia.androi.innopolis.com.aviasales.models;
 
-public class Flight {
+public class Flight extends BaseEntity {
 
     private City mCityFrom;
 
