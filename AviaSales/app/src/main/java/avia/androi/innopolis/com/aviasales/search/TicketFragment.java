@@ -16,6 +16,8 @@ import avia.androi.innopolis.com.aviasales.models.City;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
+import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
+import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
 
 public class TicketFragment extends Fragment implements ITicketView {
 
@@ -61,8 +63,14 @@ public class TicketFragment extends Fragment implements ITicketView {
         index.increment();
         container.addView(line,index.getCount() );
 
-       //ViewUtils.formTripWithoutTransphersInRightDirection(getActivity(), listFlight, container, index);
-        ViewUtils.formTripWithoutTransphersInBackDirection(getActivity(), listFlight, container, index);
+        FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
+
+        FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
+
+        loaderTo.loadWithoutTransphers(listFlight, container, index);
+
+       // loaderBack.addTripsBackInfo(container, index);
+        //loaderBack.loadWithoutTransphers(listFlight, container, index);
 
         List<List<Flight>> listList = new ArrayList<>();
         for (int i = 1; i <= 3; i++){
@@ -70,8 +78,8 @@ public class TicketFragment extends Fragment implements ITicketView {
             listList.add(listFlight);
         }
 
-       // ViewUtils.formTripWithTransphersInRightDirection(getActivity(), listList, container, index);
-        ViewUtils.formTripWithTransphersInBackDirection(getActivity(), listList, container, index);
+       // loaderTo.loadWithTransphers(listList, container, index);
+        //loaderBack.loadWithTransphers(listList, container, index);
 
         return view;
     }
