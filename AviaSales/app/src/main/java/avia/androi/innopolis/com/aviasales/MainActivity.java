@@ -17,6 +17,8 @@ import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
 import avia.androi.innopolis.com.aviasales.main_presenters.IMainView;
 import avia.androi.innopolis.com.aviasales.main_presenters.MainActivityPresenter;
 import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
+import avia.androi.innopolis.com.aviasales.objects.AppContext;
 import avia.androi.innopolis.com.aviasales.search.TicketFragment;
 import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
@@ -49,6 +51,17 @@ public class MainActivity extends BaseActivity
 
         mPresenter.chooseRightFragment();
 
+
+        FlightRequest request = new FlightRequest();
+
+        request.setCityFrom("Moskau");
+        request.setCityTo("Tokio");
+        request.setDateDeparture(System.currentTimeMillis());
+        request.setRoundTrip(false);
+
+        String json = AppContext.getGson().toJson(request);
+
+        int len = json.length();
     }
 
 
