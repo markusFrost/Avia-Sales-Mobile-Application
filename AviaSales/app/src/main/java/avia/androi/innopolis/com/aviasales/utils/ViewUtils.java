@@ -61,7 +61,7 @@ public class ViewUtils {
             tvPricePerTicket.setText(flight.getPricePerTicket() + "");
             tvFreePlaceCount.setText(flight.getFreePlaceCount() + "");
 
-            flight_view.setTag(FLIGHT_ID, flight.getId());
+            //flight_view.setTag(FLIGHT_ID, flight.getId());
 
             container.addView(flight_view, index.getCount());
             index.increment();
@@ -159,7 +159,9 @@ public class ViewUtils {
 
                 bottomDivider.setBackgroundColor(Color.RED);
 
-                ViewGroup.LayoutParams layoutParams = topDivider.getLayoutParams();
+                topDivider.setVisibility(View.GONE);
+
+                ViewGroup.LayoutParams layoutParams = bottomDivider.getLayoutParams();
 
                 layoutParams.height = 5;
             }
@@ -167,12 +169,14 @@ public class ViewUtils {
 
                 bottomDivider.setBackgroundColor(Color.GRAY);
 
+                topDivider.setVisibility(View.GONE);
+
                 ViewGroup.LayoutParams layoutParams = topDivider.getLayoutParams();
 
                 layoutParams.height = 1;
             }
 
-            flight_view.setTag(FLIGHTS_IDS, HelpUtils.getListIds(listFlights));
+          //  flight_view.setTag(FLIGHTS_IDS, HelpUtils.getListIds(listFlights));
 
             container.addView(flight_view, index.getCount());
             index.increment();

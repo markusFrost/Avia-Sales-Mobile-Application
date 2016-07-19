@@ -29,7 +29,7 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         List<Flight> listFlight = new ArrayList<>();
 
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 3; i++) {
 
 
             City cityFrom = new City();
@@ -64,7 +64,7 @@ public class TicketFragment extends Fragment implements ITicketView {
        ViewUtils.formTripWithoutTransphers(getActivity(), listFlight, container, index);
 
         List<List<Flight>> listList = new ArrayList<>();
-        for (int i = 1; i <= 10; i++){
+        for (int i = 1; i <= 3; i++){
 
             listList.add(listFlight);
         }
