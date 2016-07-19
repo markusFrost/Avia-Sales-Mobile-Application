@@ -12,16 +12,23 @@ import android.view.MenuItem;
 
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
+import avia.androi.innopolis.com.aviasales.main_presenters.IMainView;
+import avia.androi.innopolis.com.aviasales.main_presenters.MainActivityPresenter;
 import avia.androi.innopolis.com.aviasales.search.TicketFragment;
 import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, IMainView {
+
+    private MainActivityPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPresenter = new MainActivityPresenter(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -34,8 +41,8 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment fragment = BookingHistoryFragment.newInstance();
-        FragmentUtils.setFragment(fragment, MainActivity.this);
+        mPresenter.chooseRightFragment();
+
     }
 
 
@@ -78,22 +85,33 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Fragment fragment = null;
+
         if (id == R.id.nav_search_flight) {
 
-            Fragment fragment = TicketFragment.newInstance();
-            FragmentUtils.setFragment(fragment, MainActivity.this);
+            fragment = TicketFragment.newInstance();
         }
         else if (id == R.id.nav_booking_history) {
 
-            Fragment fragment = BookingHistoryFragment.newInstance();
-            FragmentUtils.setFragment(fragment, MainActivity.this);
+            fragment = BookingHistoryFragment.newInstance();
         }
         else if (id == R.id.nav_logout) {
 
         }
 
+        showFragment(fragment);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showFragment(Fragment fragment) {
+
+        if (fragment != null) {
+
+            FragmentUtils.setFragment(fragment, MainActivity.this);
+        }
     }
 }

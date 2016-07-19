@@ -13,7 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import avia.androi.innopolis.com.aviasales.R;
+import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.search.TicketFragment;
+import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 
 public class RegisterFragment extends Fragment implements IRegistrationView {
 
@@ -108,6 +111,8 @@ public class RegisterFragment extends Fragment implements IRegistrationView {
     @Override
     public void onRegistrationSuccess() {
 
+        Fragment fragment = TicketFragment.newInstance();
+        FragmentUtils.setFragment(fragment, (BaseActivity) getActivity());
     }
 
     @Override

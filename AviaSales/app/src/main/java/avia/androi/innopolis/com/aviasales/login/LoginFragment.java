@@ -12,14 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import avia.androi.innopolis.com.aviasales.MainActivity;
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.register.RegisterFragment;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
     private EditText mEditEmail, mEditPassword;
 
-    private Button mButtonOk, mButtonCancel;
+    private Button mButtonOk, mButtonRegistration;
 
     private TextView mTextViewError;
 
@@ -55,6 +57,7 @@ public class LoginFragment extends Fragment implements ILoginView {
         hideProgressBar();
 
         mButtonOk = (Button) view.findViewById(R.id.loginButtonOk);
+        mButtonRegistration = (Button) view.findViewById(R.id.loginButtonRegister);
 
 
         mButtonOk.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +65,19 @@ public class LoginFragment extends Fragment implements ILoginView {
             public void onClick(View view) {
 
                 validateData();
+            }
+        });
+
+        mButtonRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment fragment = RegisterFragment.newInstance();
+
+                MainActivity activity = (MainActivity) getActivity();
+
+                activity.showFragment(fragment);
+
             }
         });
 

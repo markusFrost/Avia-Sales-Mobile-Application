@@ -11,7 +11,10 @@ public class ShPrefUtils {
 
     private static String FILE_NAME = "AviaSales";
 
-    public static void setUser(Context context, User user) {
+    public static void setUser(User user) {
+
+        Context context = AppContext.getContext();
+
         SharedPreferences sd = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sd.edit();
 
@@ -21,7 +24,9 @@ public class ShPrefUtils {
         editor.commit();
     }
 
-    public static User getUser(Context context) {
+    public static User getUser() {
+
+        Context context = AppContext.getContext();
 
         SharedPreferences sd = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
 
