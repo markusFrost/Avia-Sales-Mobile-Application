@@ -28,4 +28,8 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
     public void setErrorMessage(int msgId) {
 
     }
+
+    public static Fragment newInstance() {
+        return new BookingHistoryFragment();
+    }
 }

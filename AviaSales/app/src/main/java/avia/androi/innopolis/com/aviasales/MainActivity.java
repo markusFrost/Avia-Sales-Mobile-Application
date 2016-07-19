@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
+import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
 import avia.androi.innopolis.com.aviasales.search.TicketFragment;
 import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 
@@ -34,7 +35,6 @@ public class MainActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Fragment fragment = TicketFragment.newInstance();
-
         FragmentUtils.setFragment(fragment, MainActivity.this);
     }
 
@@ -78,17 +78,17 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_search_flight) {
 
-        } else if (id == R.id.nav_slideshow) {
+            Fragment fragment = TicketFragment.newInstance();
+            FragmentUtils.setFragment(fragment, MainActivity.this);
+        }
+        else if (id == R.id.nav_booking_history) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+            Fragment fragment = BookingHistoryFragment.newInstance();
+            FragmentUtils.setFragment(fragment, MainActivity.this);
+        }
+        else if (id == R.id.nav_logout) {
 
         }
 
