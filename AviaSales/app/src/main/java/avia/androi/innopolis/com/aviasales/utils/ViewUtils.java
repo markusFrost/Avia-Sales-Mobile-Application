@@ -99,7 +99,77 @@ public class ViewUtils {
             index.increment();
             container.addView(line, index.getCount());
 
+            designTripWIthTranspers(activity, list, container, index);
+
             ticketsCount++;
+        }
+    }
+
+
+    private static void designTripWIthTranspers(Activity activity, List<Flight> listFlights, LinearLayout container, Counter index){
+
+        for (int i = 0; i < listFlights.size(); i++){
+
+            Flight flight = listFlights.get(i);
+
+            View line = createHelpView(activity);
+
+            View flight_view = activity.getLayoutInflater().
+                    inflate(R.layout.view_flight_item, null);
+
+            TextView tvCityFrom = (TextView) flight_view.findViewById(R.id.search_flight_city_to);
+            TextView tvCityTo = (TextView) flight_view.findViewById(R.id.search_flight_city_from);
+
+            TextView tvDateDep = (TextView) flight_view.findViewById(R.id.search_flight_date_dep);
+            TextView tvDateArr = (TextView) flight_view.findViewById(R.id.search_flight_date_arr);
+
+            TextView tvPricePerTicket = (TextView) flight_view.findViewById(R.id.search_flight_price_pert_ticket);
+            TextView tvFreePlaceCount = (TextView) flight_view.findViewById(R.id.search_flight_free_place_count);
+
+            tvCityFrom.setText(flight.getCityFrom().getName());
+            tvCityTo.setText(flight.getCityTo().getName());
+
+            tvDateDep.setText(flight.getDateDep() + "");
+            tvDateArr.setText(flight.getDateArr() + "");
+
+
+            tvPricePerTicket.setText(flight.getPricePerTicket() + "");
+            tvFreePlaceCount.setText(flight.getFreePlaceCount() + "");
+
+            LinearLayout topDivider = (LinearLayout) flight_view.findViewById(R.id.search_flight_top_divider);
+            topDivider.setVisibility(View.GONE);
+
+            LinearLayout bottomDivider = (LinearLayout) flight_view.findViewById(R.id.search_flight_bottom_divider);
+            topDivider.setVisibility(View.VISIBLE);
+
+            if (i == 0){
+
+                topDivider.setBackgroundColor(Color.RED);
+
+                ViewGroup.LayoutParams layoutParams = topDivider.getLayoutParams();
+
+                layoutParams.height = 5;
+            }
+            else if ( i == listFlights.size() - 1){
+
+                bottomDivider.setBackgroundColor(Color.RED);
+
+                ViewGroup.LayoutParams layoutParams = topDivider.getLayoutParams();
+
+                layoutParams.height = 5;
+            }
+            else {
+
+                bottomDivider.setBackgroundColor(Color.GRAY);
+
+                ViewGroup.LayoutParams layoutParams = topDivider.getLayoutParams();
+
+                layoutParams.height = 1;
+            }
+
+            container.addView(flight_view, index.getCount());
+            index.increment();
+            container.addView(line, index.getCount());
         }
     }
 

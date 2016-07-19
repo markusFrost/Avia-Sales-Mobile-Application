@@ -15,6 +15,17 @@
         android:layout_height="wrap_content"
         >
 
+        <LinearLayout
+            android:id="@+id/search_flight_top_divider"
+            android:orientation="vertical"
+            android:layout_marginTop="3dp"
+            android:visibility="gone"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -126,6 +137,8 @@
         </RelativeLayout>
         
         <LinearLayout
+            android:id="@+id/search_flight_bottom_divider"
+            android:orientation="vertical"
             android:layout_marginTop="3dp"
             android:background="@android:color/darker_gray"
             android:layout_width="match_parent"
