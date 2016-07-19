@@ -61,7 +61,8 @@ public class TicketFragment extends Fragment implements ITicketView {
         index.increment();
         container.addView(line,index.getCount() );
 
-       ViewUtils.formTripWithoutTransphers(getActivity(), listFlight, container, index);
+       //ViewUtils.formTripWithoutTransphersInRightDirection(getActivity(), listFlight, container, index);
+        ViewUtils.formTripWithoutTransphersInBackDirection(getActivity(), listFlight, container, index);
 
         List<List<Flight>> listList = new ArrayList<>();
         for (int i = 1; i <= 3; i++){
@@ -69,7 +70,8 @@ public class TicketFragment extends Fragment implements ITicketView {
             listList.add(listFlight);
         }
 
-        ViewUtils.formTripWithTransphers(getActivity(), listList, container, index);
+       // ViewUtils.formTripWithTransphersInRightDirection(getActivity(), listList, container, index);
+        ViewUtils.formTripWithTransphersInBackDirection(getActivity(), listList, container, index);
 
         return view;
     }

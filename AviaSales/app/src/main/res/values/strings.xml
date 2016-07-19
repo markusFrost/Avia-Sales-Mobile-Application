@@ -24,5 +24,6 @@
     <string name="trip_without_transpher">Trips without transphers</string>
     <string name="trip_with_transpher">Trips with transphers</string>
     <string name="ticket_number">Ticket №</string>
+    <string name="trips_back">Trips back</string>
 
 </resources>
