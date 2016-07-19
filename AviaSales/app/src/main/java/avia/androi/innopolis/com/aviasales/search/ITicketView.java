@@ -7,7 +7,7 @@ import avia.androi.innopolis.com.aviasales.models.Flight;
 
 public interface ITicketView extends UILoader{
 
-    void displayFlightsList(List<Flight> list);
+    void displayFlightsListNoTranspher(List<Flight> list);
 
-    void displayEmptyFlightsList();
+    void displayEmptyFlightsListNoTranspher();
 }

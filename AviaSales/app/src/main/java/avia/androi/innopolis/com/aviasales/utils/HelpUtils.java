@@ -14,7 +14,7 @@ public class HelpUtils {
 
         for (Flight flight : list){
 
-            listIds.add(flight.getId());
+            listIds.add(flight.getFlightId());
         }
 
         return listIds;
@@ -25,5 +25,20 @@ public class HelpUtils {
         UUID uuid = UUID.randomUUID();
 
         return uuid;
+    }
+
+    public static List<Flight> buildListFlightsFromOneSizeList(List<List<Flight>> array){
+
+        List<Flight> listFlights = new ArrayList<>();
+
+        for (List<Flight> list : array){
+
+            if (list.size() == 1){
+
+                listFlights.add(list.get(0));
+            }
+        }
+
+        return listFlights;
     }
 }

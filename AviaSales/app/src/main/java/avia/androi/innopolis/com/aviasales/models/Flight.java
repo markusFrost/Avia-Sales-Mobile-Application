@@ -1,6 +1,10 @@
 package avia.androi.innopolis.com.aviasales.models;
 
-public class Flight extends BaseEntity {
+import java.util.UUID;
+
+public class Flight {
+
+    private UUID flightId;
 
     private City mCityFrom;
 
@@ -62,5 +66,13 @@ public class Flight extends BaseEntity {
 
     public void setFreePlaceCount(int freePlaceCount) {
         mFreePlaceCount = freePlaceCount;
+    }
+
+    public UUID getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(UUID flightId) {
+        this.flightId = flightId;
     }
 }

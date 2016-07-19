@@ -1,7 +1,5 @@
 package avia.androi.innopolis.com.aviasales.history;
 
-import avia.androi.innopolis.com.aviasales.models.User;
-
 public class BookingHistoryPresenter implements IBookingHistoryPresenter {
 
     @Override
@@ -10,7 +8,7 @@ public class BookingHistoryPresenter implements IBookingHistoryPresenter {
     }
 
     @Override
-    public void onServerSuccess(User resutUser) {
+    public void onServerSuccess(Object resutUser) {
 
     }
 

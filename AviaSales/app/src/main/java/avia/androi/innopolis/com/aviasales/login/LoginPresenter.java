@@ -26,12 +26,16 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void onServerSuccess(User user) {
+    public void onServerSuccess(Object object) {
 
-        ShPrefUtils.setUser(user);
+        if (object instanceof User) {
 
-        iView.hideProgressBar();
-        iView.onLoginSuccess();
+            User user = (User) object;
+            ShPrefUtils.setUser(user);
+
+            iView.hideProgressBar();
+            iView.onLoginSuccess();
+        }
     }
 
     @Override

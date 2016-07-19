@@ -23,7 +23,7 @@ public abstract class BaseFlightsLoader {
 
         this.activity = activity;
     }
-    public  void loadWithoutTransphers(List<Flight> listFlight, LinearLayout container, Counter index){
+    public  void loadNoTransphers(List<Flight> listFlight, LinearLayout container, Counter index){
 
         View helpView = ViewUtils.createHelpView(activity);
 
