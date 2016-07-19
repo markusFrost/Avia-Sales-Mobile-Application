@@ -5,4 +5,6 @@ import android.app.Fragment;
 public interface IMainView {
 
     void showFragment (Fragment fragment);
+
+    void initializeNavDrawer();
 }

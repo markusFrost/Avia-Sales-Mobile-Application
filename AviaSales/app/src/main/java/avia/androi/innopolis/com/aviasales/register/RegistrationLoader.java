@@ -46,11 +46,9 @@ public class RegistrationLoader implements ILoader<User> {
                 try {
                     String json = response.body().string();
 
-                    User resutUser = new User();
+                    User resutUser = AppContext.getGson().fromJson(json, User.class);
 
-                    resutUser = AppContext.getGson().fromJson(json, User.class);
-
-                    iPresenter.onServerSuccess();
+                    iPresenter.onServerSuccess(resutUser);
 
                 } catch (IOException e) {
 

@@ -30,6 +30,8 @@ public class MainActivityPresenter {
             Fragment fragment = TicketFragment.newInstance();
 
             iView.showFragment(fragment);
+
+            iView.initializeNavDrawer();
         }
     }
 }

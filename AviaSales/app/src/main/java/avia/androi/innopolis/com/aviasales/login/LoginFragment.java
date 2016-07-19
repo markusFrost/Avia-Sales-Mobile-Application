@@ -14,8 +14,11 @@ import android.widget.TextView;
 
 import avia.androi.innopolis.com.aviasales.MainActivity;
 import avia.androi.innopolis.com.aviasales.R;
+import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.models.User;
 import avia.androi.innopolis.com.aviasales.register.RegisterFragment;
+import avia.androi.innopolis.com.aviasales.search.TicketFragment;
+import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
@@ -87,6 +90,9 @@ public class LoginFragment extends Fragment implements ILoginView {
 
     private void validateData() {
 
+        mEditEmail.setText("and@mail");
+        mEditPassword.setText("1234");
+
         mTextViewError.setVisibility(View.GONE);
 
         String email = mEditEmail.getText().toString();
@@ -117,6 +123,8 @@ public class LoginFragment extends Fragment implements ILoginView {
     @Override
     public void onLoginSuccess() {
 
+        Fragment fragment = TicketFragment.newInstance();
+        FragmentUtils.setFragment(fragment, (BaseActivity) getActivity());
     }
 
     @Override

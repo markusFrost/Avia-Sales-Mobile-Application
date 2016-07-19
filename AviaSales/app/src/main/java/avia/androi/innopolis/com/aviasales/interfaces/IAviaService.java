@@ -10,4 +10,7 @@ public interface IAviaService {
 
     @POST("/registration_mobile.jsp")
     Call<ResponseBody> regiser(@Header("json_user") String json);
+
+    @POST("/login_mobile.jsp")
+    Call<ResponseBody> login(@Header("json_user") String json);
 }

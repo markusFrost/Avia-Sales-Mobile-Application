@@ -2,6 +2,7 @@ package avia.androi.innopolis.com.aviasales.login;
 
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
 
 public class LoginPresenter implements ILoginPresenter {
 
@@ -25,7 +26,9 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void onServerSuccess() {
+    public void onServerSuccess(User user) {
+
+        ShPrefUtils.setUser(user);
 
         iView.hideProgressBar();
         iView.onLoginSuccess();

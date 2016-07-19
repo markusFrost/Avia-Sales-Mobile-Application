@@ -9,18 +9,24 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
 import avia.androi.innopolis.com.aviasales.main_presenters.IMainView;
 import avia.androi.innopolis.com.aviasales.main_presenters.MainActivityPresenter;
+import avia.androi.innopolis.com.aviasales.models.User;
 import avia.androi.innopolis.com.aviasales.search.TicketFragment;
 import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
+import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, IMainView {
 
     private MainActivityPresenter mPresenter;
+
+    private  NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,7 @@ public class MainActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         mPresenter.chooseRightFragment();
@@ -113,5 +119,23 @@ public class MainActivity extends BaseActivity
 
             FragmentUtils.setFragment(fragment, MainActivity.this);
         }
+    }
+
+    @Override
+    public void initializeNavDrawer() {
+
+        View view = getLayoutInflater().inflate(R.layout.nav_header_main, null);
+
+        TextView tvName = (TextView) view.findViewById(R.id.nav_header_name);
+
+        TextView tvEmail = (TextView) view.findViewById(R.id.nav_header_email);
+
+        User user = ShPrefUtils.getUser();
+
+        tvName.setText("djfdf");
+
+        //tvEmail.setText(user.getEmail());
+
+        navigationView.addHeaderView(view);
     }
 }

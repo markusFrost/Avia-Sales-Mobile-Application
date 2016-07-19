@@ -34,7 +34,7 @@ public class ShPrefUtils {
 
         User user = AppContext.getGson().fromJson(json, User.class);
 
-        return user;
+        return null;
 
     }
 }
