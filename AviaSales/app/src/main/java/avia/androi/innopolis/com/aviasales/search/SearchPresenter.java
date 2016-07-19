@@ -3,6 +3,7 @@ package avia.androi.innopolis.com.aviasales.search;
 import java.util.List;
 
 import avia.androi.innopolis.com.aviasales.models.Flight;
+import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
 import avia.androi.innopolis.com.aviasales.models.responses.FlightResponse;
 import avia.androi.innopolis.com.aviasales.utils.HelpUtils;
 
@@ -20,9 +21,9 @@ public class SearchPresenter implements ISearchPresenter {
     }
 
     @Override
-    public void search() {
+    public void search(FlightRequest request) {
 
-        mSearchLoader.load(null);
+        mSearchLoader.load(request);
     }
 
     @Override

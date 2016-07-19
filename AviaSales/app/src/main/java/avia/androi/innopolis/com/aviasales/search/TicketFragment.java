@@ -14,6 +14,7 @@ import java.util.List;
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
+import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
 import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
@@ -53,7 +54,15 @@ public class TicketFragment extends Fragment implements ITicketView {
             @Override
             public void onClick(View view) {
 
-                seachPresenter.search();
+                FlightRequest request = new FlightRequest();
+
+                request.setCityFrom("Moscow");
+                request.setCityTo("Tokio");
+                request.setDateDeparture(1468935531506L);
+                request.setDateBackReturn(1469197800000L);
+                request.setRoundTrip(true);
+
+                seachPresenter.search(request);
             }
         });
 
