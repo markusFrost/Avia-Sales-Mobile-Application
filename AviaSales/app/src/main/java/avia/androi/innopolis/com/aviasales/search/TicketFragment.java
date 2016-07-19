@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.List;
@@ -35,8 +36,6 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         View searchPanel = inflater.inflate(R.layout.view_search_panel, containerViewGroup, false);
 
-
-
         index = new Counter();
         index.setCount(0);
 
@@ -48,20 +47,15 @@ public class TicketFragment extends Fragment implements ITicketView {
         index.increment();
         container.addView(line,index.getCount() );
 
-        FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
+        Button btnSearch = (Button) searchPanel.findViewById(R.id.search_button_ok);
 
-        FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-       //loaderTo.loadNoTransphers(listFlight, container, index);
-
-       // loaderBack.addTripsBackInfo(container, index);
-        //loaderBack.loadNoTransphers(listFlight, container, index);
-
-
-       // loaderTo.loadWithTransphers(listList, container, index);
-        //loaderBack.loadWithTransphers(listList, container, index);
-
-        seachPresenter.search();
+                seachPresenter.search();
+            }
+        });
 
         return view;
     }
@@ -98,6 +92,21 @@ public class TicketFragment extends Fragment implements ITicketView {
 
     @Override
     public void displayEmptyFlightsListNoTranspher() {
+
+    }
+
+    @Override
+    public void displayFlightsListTransphers(List<Flight> list) {
+
+        FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
+
+        loaderBack.addTripsBackInfo(container, index);
+
+        loaderBack.loadNoTransphers(list, container, index);
+    }
+
+    @Override
+    public void displayEmptyFlightsListTransphers() {
 
     }
 }

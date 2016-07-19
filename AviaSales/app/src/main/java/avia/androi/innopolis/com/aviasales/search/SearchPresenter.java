@@ -38,6 +38,8 @@ public class SearchPresenter implements ISearchPresenter {
 
             List<Flight> listNoTranphers = HelpUtils.buildListFlightsFromOneSizeList(listTo);
 
+            List<Flight> listBackTranphers = HelpUtils.buildListFlightsFromOneSizeList(listBack);
+
             if (listNoTranphers.isEmpty()) {
 
                 iView.displayEmptyFlightsListNoTranspher();
@@ -45,6 +47,16 @@ public class SearchPresenter implements ISearchPresenter {
 
                 iView.displayFlightsListNoTranspher(listNoTranphers);
             }
+
+            if (listBackTranphers.isEmpty()){
+
+                iView.displayEmptyFlightsListTransphers();
+            }
+            else{
+
+                iView.displayFlightsListTransphers(listBackTranphers);
+            }
+
         }
 
 

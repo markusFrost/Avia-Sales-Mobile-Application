@@ -10,4 +10,8 @@ public interface ITicketView extends UILoader{
     void displayFlightsListNoTranspher(List<Flight> list);
 
     void displayEmptyFlightsListNoTranspher();
+
+    void displayFlightsListTransphers(List<Flight> list);
+
+    void displayEmptyFlightsListTransphers();
 }
