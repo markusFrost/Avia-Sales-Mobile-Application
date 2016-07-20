@@ -1,8 +1,11 @@
 package avia.androi.innopolis.com.aviasales.models;
 
 import java.util.List;
+import java.util.UUID;
 
-public class Booking extends BaseEntity {
+public class Booking {
+
+    private UUID bookingId;
 
     private long dateBook;
 
@@ -31,5 +34,13 @@ public class Booking extends BaseEntity {
 
     public void setListFlightsBack(List<Flight> listFlightsBack) {
         this.listFlightsBack = listFlightsBack;
+    }
+
+    public UUID getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(UUID bookingId) {
+        this.bookingId = bookingId;
     }
 }

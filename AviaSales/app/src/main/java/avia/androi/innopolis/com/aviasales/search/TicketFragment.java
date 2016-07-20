@@ -14,9 +14,14 @@ import android.widget.ScrollView;
 import java.util.List;
 
 import avia.androi.innopolis.com.aviasales.R;
+import avia.androi.innopolis.com.aviasales.base.BaseActivity;
+import avia.androi.innopolis.com.aviasales.booking.BookingPresenter;
+import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
+import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
+import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
 import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
@@ -24,6 +29,7 @@ import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
 public class TicketFragment extends Fragment implements ITicketView {
 
     SearchPresenter seachPresenter;
+    BookingPresenter bookingPresenter;
 
     View view;
     LinearLayout container;
@@ -36,6 +42,7 @@ public class TicketFragment extends Fragment implements ITicketView {
     public View onCreateView(LayoutInflater inflater, ViewGroup containerViewGroup, Bundle savedInstanceState) {
 
         seachPresenter = new SearchPresenter(this);
+        bookingPresenter = new BookingPresenter(this);
 
         view = inflater.inflate(R.layout.fragment_tickets, null);
 
@@ -125,10 +132,20 @@ public class TicketFragment extends Fragment implements ITicketView {
         loaderBack.addTripsBackInfo(container, index);
 
         loaderBack.loadNoTransphers(list, container, index);
+
+        bookingPresenter.book();
     }
 
     @Override
     public void displayEmptyFlightsListTransphers() {
 
+    }
+
+    @Override
+    public void goToBookingHistory(List<Booking> listBooking) {
+
+        Fragment fragment = BookingHistoryFragment.newInstance(listBooking);
+
+        FragmentUtils.setFragment(fragment, (BaseActivity) getActivity());
     }
 }
