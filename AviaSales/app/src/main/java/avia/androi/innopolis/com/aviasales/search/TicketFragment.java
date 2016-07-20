@@ -6,56 +6,45 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import avia.androi.innopolis.com.aviasales.R;
-import avia.androi.innopolis.com.aviasales.models.City;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
+import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
 import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
 
 public class TicketFragment extends Fragment implements ITicketView {
 
+    SearchPresenter seachPresenter;
+
+    View view;
+    LinearLayout container;
+    Counter index;
+    ProgressBar pb;
+    ScrollView mScrollView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup containerViewGroup, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_tickets, null);
+        seachPresenter = new SearchPresenter(this);
+
+        view = inflater.inflate(R.layout.fragment_tickets, null);
 
         View searchPanel = inflater.inflate(R.layout.view_search_panel, containerViewGroup, false);
 
-        List<Flight> listFlight = new ArrayList<>();
-
-        for (int i = 1; i <= 3; i++) {
-
-
-            City cityFrom = new City();
-            cityFrom.setName("CityFrom " + i);
-
-            City cityTo = new City();
-            cityTo.setName("CityTo " + i);
-
-
-            Flight flight = new Flight();
-            flight.setCityFrom(cityFrom);
-            flight.setCityTo(cityTo);
-            flight.setDateArr(i * 5);
-            flight.setDateDep(i);
-            flight.setFreePlaceCount(i);
-            flight.setPricePerTicket(i * 50 + 10);
-
-            listFlight.add(flight);
-        }
-
-        Counter index = new Counter();
+        index = new Counter();
         index.setCount(0);
 
-        LinearLayout container = (LinearLayout) view.findViewById(R.id.search_container);
+        container = (LinearLayout) view.findViewById(R.id.search_container);
 
         View line = ViewUtils.createHelpView(getActivity());
 
@@ -63,45 +52,46 @@ public class TicketFragment extends Fragment implements ITicketView {
         index.increment();
         container.addView(line,index.getCount() );
 
-        FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
+        Button btnSearch = (Button) searchPanel.findViewById(R.id.search_button_ok);
 
-        FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        loaderTo.loadWithoutTransphers(listFlight, container, index);
+                FlightRequest request = new FlightRequest();
 
-       // loaderBack.addTripsBackInfo(container, index);
-        //loaderBack.loadWithoutTransphers(listFlight, container, index);
+                request.setCityFrom("Moscow");
+                request.setCityTo("Tokio");
+                request.setDateDeparture(1468935531506L);
+                request.setDateBackReturn(1469197800000L);
+                request.setRoundTrip(true);
 
-        List<List<Flight>> listList = new ArrayList<>();
-        for (int i = 1; i <= 3; i++){
+                seachPresenter.search(request);
+            }
+        });
 
-            listList.add(listFlight);
-        }
+        mScrollView = (ScrollView) view.findViewById(R.id.search_scroll_view);
 
-       // loaderTo.loadWithTransphers(listList, container, index);
-        //loaderBack.loadWithTransphers(listList, container, index);
+        pb = (ProgressBar) view.findViewById(R.id.search_progress_bar);
+        hideProgressBar();
 
         return view;
     }
 
-    @Override
-    public void displayFlightsList(List<Flight> list) {
 
-    }
-
-    @Override
-    public void displayEmptyFlightsList() {
-
-    }
 
     @Override
     public void showProgressBar() {
 
+        mScrollView.setVisibility(View.GONE);
+        pb.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
 
+        mScrollView.setVisibility(View.VISIBLE);
+        pb.setVisibility(View.GONE);
     }
 
     @Override
@@ -112,5 +102,33 @@ public class TicketFragment extends Fragment implements ITicketView {
     public static Fragment newInstance() {
 
         return new TicketFragment();
+    }
+
+    @Override
+    public void displayFlightsListNoTranspher(List<Flight> list) {
+
+        FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
+
+        loaderTo.loadNoTransphers(list, container, index);
+    }
+
+    @Override
+    public void displayEmptyFlightsListNoTranspher() {
+
+    }
+
+    @Override
+    public void displayFlightsListTransphers(List<Flight> list) {
+
+        FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
+
+        loaderBack.addTripsBackInfo(container, index);
+
+        loaderBack.loadNoTransphers(list, container, index);
+    }
+
+    @Override
+    public void displayEmptyFlightsListTransphers() {
+
     }
 }

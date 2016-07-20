@@ -1,7 +1,5 @@
 package avia.androi.innopolis.com.aviasales.booking;
 
-import avia.androi.innopolis.com.aviasales.models.User;
-
 public class BookingPresenter implements IBookingPresenter {
     @Override
     public void book() {
@@ -9,7 +7,7 @@ public class BookingPresenter implements IBookingPresenter {
     }
 
     @Override
-    public void onServerSuccess(User resutUser) {
+    public void onServerSuccess(Object resutUser) {
 
     }
 

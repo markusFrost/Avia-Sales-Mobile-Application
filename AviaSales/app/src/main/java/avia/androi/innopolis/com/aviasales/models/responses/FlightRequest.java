@@ -10,6 +10,15 @@ public class FlightRequest {
 
     private boolean isRoundTrip;
 
+    private long dateBackReturn;
+
+    public long getDateBackReturn() {
+        return dateBackReturn;
+    }
+
+    public void setDateBackReturn(long dateBackReturn) {
+        this.dateBackReturn = dateBackReturn;
+    }
 
     public String getCityFrom() {
         return cityFrom;

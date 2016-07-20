@@ -13,6 +13,7 @@ import java.util.List;
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
+import avia.androi.innopolis.com.aviasales.utils.TimeUtils;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 
 public abstract class BaseFlightsLoader {
@@ -23,7 +24,7 @@ public abstract class BaseFlightsLoader {
 
         this.activity = activity;
     }
-    public  void loadWithoutTransphers(List<Flight> listFlight, LinearLayout container, Counter index){
+    public  void loadNoTransphers(List<Flight> listFlight, LinearLayout container, Counter index){
 
         View helpView = ViewUtils.createHelpView(activity);
 
@@ -56,8 +57,8 @@ public abstract class BaseFlightsLoader {
             tvCityFrom.setText(flight.getCityFrom().getName());
             tvCityTo.setText(flight.getCityTo().getName());
 
-            tvDateDep.setText(flight.getDateDep() + "");
-            tvDateArr.setText(flight.getDateArr() + "");
+            tvDateDep.setText(TimeUtils.convertMillsToString(flight.getDateDep()));
+            tvDateArr.setText(TimeUtils.convertMillsToString(flight.getDateArr()));
 
 
             tvPricePerTicket.setText(flight.getPricePerTicket() + "");

@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import avia.androi.innopolis.com.aviasales.interfaces.IAviaService;
 import avia.androi.innopolis.com.aviasales.interfaces.ILoader;
-import avia.androi.innopolis.com.aviasales.models.Item;
 import avia.androi.innopolis.com.aviasales.models.ServerResponse;
 import avia.androi.innopolis.com.aviasales.models.User;
 import avia.androi.innopolis.com.aviasales.objects.AppContext;
@@ -17,7 +16,7 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class LoginLoader implements ILoader<Item> {
+public class LoginLoader implements ILoader<User> {
 
     ILoginPresenter iPresenter;
 
