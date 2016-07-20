@@ -88,9 +88,6 @@ public class LoginFragment extends Fragment implements ILoginView {
 
     private void validateData() {
 
-        mEditEmail.setText("and@mail");
-        mEditPassword.setText("1234");
-
         mTextViewError.setVisibility(View.GONE);
 
         String email = mEditEmail.getText().toString();

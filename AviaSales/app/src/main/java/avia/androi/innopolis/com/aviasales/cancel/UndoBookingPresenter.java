@@ -20,11 +20,11 @@ public class UndoBookingPresenter implements IUndoBookingPresenter {
     }
 
     @Override
-    public void undoBooking() {
+    public void undoBooking(UUID bookingId) {
 
         BookingRequest request = new BookingRequest();
-        request.setUserId(UUID.fromString("99a3c93a-25f2-4dc4-802c-e17f290df021"));
-        request.setBookingId(UUID.fromString("0289e81d-3347-409d-bc4f-fe236157a30f"));
+        request.setUserId(ShPrefUtils.getUser().getId());
+        request.setBookingId(bookingId);
 
         mLoader.load(request);
 

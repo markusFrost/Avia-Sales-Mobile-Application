@@ -41,4 +41,19 @@ public class HelpUtils {
 
         return listFlights;
     }
+
+    public static List<List<Flight>> buildListFlightsFromManySizeList(List<List<Flight>> array){
+
+        List<List<Flight>> listFlights = new ArrayList<>();
+
+        for (List<Flight> list : array){
+
+            if (list.size() > 1){
+
+                listFlights.add(list);
+            }
+        }
+
+        return listFlights;
+    }
 }

@@ -45,26 +45,52 @@ public class SearchPresenter implements ISearchPresenter {
 
             if (listNoTranphers.isEmpty()) {
 
-                iView.display__Flights__NO___Transpher__Empty___Straight();
+                iView.showEmptyFlights();
             } else {
 
-                iView.display___Flights__No__Tranpher__With__Full___Straight(listNoTranphers);
+                iView.showNotTrasph(listNoTranphers);
             }
 
             if (listBackTranphers.isEmpty()){
 
-                iView.display__Flights__No___Transphers__Empty___Back();
+                iView.showEmptyFlights();
             }
             else{
 
-                iView.display__Flights__No___Transphers__Full___Back(listBackTranphers);
+                iView.showNoTrasphBack(listBackTranphers);
             }
+
+            List<List<Flight>> listWithTo = HelpUtils.buildListFlightsFromManySizeList(listTo);
+
+            List<List<Flight>> listWithBack = HelpUtils.buildListFlightsFromManySizeList(listBack);
+
+
+            showWithTo(listWithTo);
+
+            showWithBack(listWithBack);
+
 
         }
 
         iView.hideProgressBar();
 
 
+    }
+
+    private void showWithBack(List<List<Flight>> listWithBack) {
+
+        if (listWithBack != null && !listWithBack.isEmpty()) {
+
+            iView.showWithTrasphBack(listWithBack);
+        }
+    }
+
+    private void showWithTo(List<List<Flight>> listWithTo) {
+
+        if (listWithTo != null && !listWithTo.isEmpty()) {
+
+            iView.showWithTrasph(listWithTo);
+        }
     }
 
     @Override

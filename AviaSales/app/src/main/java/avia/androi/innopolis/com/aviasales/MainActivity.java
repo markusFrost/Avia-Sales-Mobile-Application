@@ -146,10 +146,6 @@ public class MainActivity extends BaseActivity
 
         User user = ShPrefUtils.getUser();
 
-        user = new User();
-        user.setEmail("dfd");
-        user.setName("dfddf");
-
         tvName.setText(user.getName());
 
         tvEmail.setText(user.getEmail());

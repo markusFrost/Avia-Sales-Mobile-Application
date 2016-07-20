@@ -29,7 +29,7 @@ import avia.androi.innopolis.com.aviasales.objects.Constants;
 import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
-import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
+import avia.androi.innopolis.com.aviasales.view.FlightsInStraightDirectionLoader;
 
 public class TicketFragment extends Fragment implements ITicketView {
 
@@ -95,7 +95,7 @@ public class TicketFragment extends Fragment implements ITicketView {
                 request.setCityTo("Tokio");
                 request.setDateDeparture(1468935531506L);
                 request.setDateBackReturn(1469197800000L);
-                request.setRoundTrip(false);
+                request.setRoundTrip(true);
 
                 seachPresenter.search(request);
             }
@@ -138,33 +138,46 @@ public class TicketFragment extends Fragment implements ITicketView {
     }
 
     @Override
-    public void display___Flights__No__Tranpher__With__Full___Straight(List<Flight> list) {
+    public void showNotTrasph(List<Flight> list) {
 
-        FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
+        FlightsInStraightDirectionLoader loaderTo = new FlightsInStraightDirectionLoader(getActivity());
 
         loaderTo.loadNoTransphers(list, container, index, listner, Constants.STRAIGHT);
     }
 
     @Override
-    public void display__Flights__NO___Transpher__Empty___Straight() {
+    public void showEmptyFlights() {
 
     }
 
     @Override
-    public void display__Flights__No___Transphers__Full___Back(List<Flight> list) {
+    public void showNoTrasphBack(List<Flight> listBackTranphers) {
 
         FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
 
         loaderBack.addTripsBackInfo(container, index);
 
-        loaderBack.loadNoTransphers(list, container, index, listner, Constants.BACK);
-
+        loaderBack.loadNoTransphers(listBackTranphers, container, index, listner, Constants.BACK);
     }
 
     @Override
-    public void display__Flights__No___Transphers__Empty___Back() {
+    public void showWithTrasph(List<List<Flight>> listTo) {
 
+        FlightsInStraightDirectionLoader loaderTo = new FlightsInStraightDirectionLoader(getActivity());
+
+        loaderTo.loadWithTransphers (listTo, container, index, listner, Constants.STRAIGHT);
     }
+
+    @Override
+    public void showWithTrasphBack(List<List<Flight>> listBack) {
+
+        FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
+
+        loaderBack.addTripsBackInfo(container, index);
+
+        loaderBack.loadWithTransphers(listBack, container, index, listner, Constants.BACK);
+    }
+
 
     @Override
     public void goToBookingHistory(List<Booking> listBooking) {
@@ -203,6 +216,8 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         b.show();
     }
+
+
 
     private void showAlertShure() {
 
