@@ -13,6 +13,7 @@ import java.util.List;
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.Counter;
+import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
 import avia.androi.innopolis.com.aviasales.view.BookingHistoryViewLoader;
 
 public class BookingHistoryFragment extends Fragment implements IBookingHistoryView {
@@ -39,10 +40,12 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
 
         BookingHistoryViewLoader loader = new BookingHistoryViewLoader(getActivity());
 
-        if (listBooking != null && !listBooking.isEmpty()) {
+        if (listBooking == null){
 
-            loader.loadBookHistory(listBooking, container, index);
+            listBooking = ShPrefUtils.getListBooking();
         }
+
+        loader.loadBookHistory(listBooking, container, index);
 
         return view;
     }

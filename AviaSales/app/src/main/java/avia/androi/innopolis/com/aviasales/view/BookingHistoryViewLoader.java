@@ -49,7 +49,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
 
     private void createCityDirection(City cityFrom, City cityTo,  LinearLayout container, Counter index){
 
-        String msg = cityFrom.getName() + " from " + cityTo.getName();
+        String msg = cityFrom.getName() + " to " + cityTo.getName();
 
         View helpView = ViewUtils.createHelpView(activity);
 
