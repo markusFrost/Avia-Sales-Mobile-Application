@@ -17,4 +17,7 @@ public interface IAviaService {
 
     @GET("/flights_search_mobile.jsp")
     Call<ResponseBody> getFlights(@Header("json_flights") String json);
+
+    @POST("/booking_flight_mobile.jsp")
+    Call<ResponseBody> bookFlights(@Header("json_booking") String json);
 }

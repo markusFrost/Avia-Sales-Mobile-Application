@@ -81,7 +81,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
 
             designTripWIthTranspers(booking.getListFlightsTo(), container, index);
 
-            if (!booking.getListFlightsBack().isEmpty()) {
+            if ( booking.getListFlightsBack() != null && !booking.getListFlightsBack().isEmpty()) {
 
                 createCityDirection(cityTo, cityFrom, container, index);
 
