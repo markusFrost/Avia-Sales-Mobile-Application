@@ -25,4 +25,6 @@ public interface IAviaService {
     Call<ResponseBody> getBookingHistory(@Header("json_booking") String json);
 
 
+    @POST("/cancel_booking_flight_mobile.jsp")
+    Call<ResponseBody> undoBbookFlights(@Header("json_booking") String json);
 }
