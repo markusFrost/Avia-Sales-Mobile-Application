@@ -212,7 +212,7 @@ public class TicketFragment extends Fragment implements ITicketView {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                bookingPresenter.book(listIds, placeCount);
+                bookingPresenter.book(listIdsStraight, placeCount);
             }
         });
 
@@ -228,19 +228,31 @@ public class TicketFragment extends Fragment implements ITicketView {
     }
 
 
-    private List<UUID> listIds = new ArrayList<>();
+    private List<UUID> listIdsStraight = new ArrayList<>();
+
+    private List<UUID> listIdsBack = new ArrayList<>();
 
     private int placeCount;
 
 
-    public void putIds(List<UUID> list){
+    public void putIdsStraight(List<UUID> list){
 
-        listIds.addAll(list);
+        listIdsStraight.addAll(list);
     }
 
-    public void deleteIds(List<UUID> list){
+    public void deleteIdsStraight(List<UUID> list){
 
-        listIds.removeAll(list);
+        listIdsStraight.removeAll(list);
+    }
+
+    public void putIdsSBack(List<UUID> list){
+
+        listIdsBack.addAll(list);
+    }
+
+    public void deleteIdsBack(List<UUID> list){
+
+        listIdsBack.removeAll(list);
     }
 
     public void setPlaceCount(int count){
