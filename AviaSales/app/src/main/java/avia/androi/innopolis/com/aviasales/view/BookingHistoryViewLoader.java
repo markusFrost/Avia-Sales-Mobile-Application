@@ -73,7 +73,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
         for (Booking booking : list){
 
             City cityFrom = booking.getListFlightsTo().get(0).getCityFrom();
-            City cityTo = booking.getListFlightsTo().get(booking.getListFlightsTo().size() - 1).getCityFrom();
+            City cityTo = booking.getListFlightsTo().get(booking.getListFlightsTo().size() - 1).getCityTo();
 
             createBookingTitle(booking, container, index);
 

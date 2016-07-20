@@ -152,8 +152,8 @@ public abstract class BaseFlightsLoader {
             tvCityFrom.setText(flight.getCityFrom().getName());
             tvCityTo.setText(flight.getCityTo().getName());
 
-            tvDateDep.setText(flight.getDateDep() + "");
-            tvDateArr.setText(flight.getDateArr() + "");
+            tvDateDep.setText(TimeUtils.convertMillsToString(flight.getDateDep()));
+            tvDateArr.setText(TimeUtils.convertMillsToString(flight.getDateArr()));
 
 
             tvPricePerTicket.setText(flight.getPricePerTicket() + "");
