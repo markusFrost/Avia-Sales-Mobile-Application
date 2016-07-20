@@ -13,6 +13,8 @@ import java.util.List;
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
+import avia.androi.innopolis.com.aviasales.models.ViewItem;
+import avia.androi.innopolis.com.aviasales.objects.AppContext;
 import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
 import avia.androi.innopolis.com.aviasales.utils.TimeUtils;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
@@ -25,7 +27,7 @@ public abstract class BaseFlightsLoader {
 
         this.activity = activity;
     }
-    public  void loadNoTransphers(List<Flight> listFlight, LinearLayout container, Counter index, OnLayoutClickListner listner){
+    public  void loadNoTransphers(List<Flight> listFlight, LinearLayout container, Counter index, OnLayoutClickListner listner, int tripType){
 
         View helpView = ViewUtils.createHelpView(activity);
 
@@ -67,7 +69,13 @@ public abstract class BaseFlightsLoader {
 
             LinearLayout clickLayout = (LinearLayout) flight_view.findViewById(R.id.search_flight_container);
 
-            clickLayout.setTag(R.id.action_settings, flight.getFlightId());
+            ViewItem item = new ViewItem();
+            item.addId(flight.getFlightId());
+            item.setClicked(false);
+            item.setTripType(tripType);
+
+
+            clickLayout.setTag(R.id.action_settings, AppContext.getGson().toJson(item));
 
            /* clickLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

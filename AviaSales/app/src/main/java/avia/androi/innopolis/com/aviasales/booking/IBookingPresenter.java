@@ -7,5 +7,5 @@ import avia.androi.innopolis.com.aviasales.interfaces.IPresenter;
 
 public interface IBookingPresenter extends IPresenter {
 
-    void book(List<UUID> list, int placeCount);
+    void book(List<UUID> listIdsStraight, List<UUID> listIds, int placeCount);
 }

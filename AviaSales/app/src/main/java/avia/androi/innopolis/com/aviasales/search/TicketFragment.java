@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
+import avia.androi.innopolis.com.aviasales.objects.Constants;
 import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
@@ -42,6 +44,9 @@ public class TicketFragment extends Fragment implements ITicketView {
 
     OnLayoutClickListner listner;
 
+    private Button btnBook;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup containerViewGroup, Bundle savedInstanceState) {
@@ -54,6 +59,18 @@ public class TicketFragment extends Fragment implements ITicketView {
         view = inflater.inflate(R.layout.fragment_tickets, null);
 
         View searchPanel = inflater.inflate(R.layout.view_search_panel, containerViewGroup, false);
+
+        btnBook = (Button) searchPanel.findViewById(R.id.search_button_book);
+
+        btnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showAlertPlaceCount();
+            }
+        });
+
+        hideButtonBuy();
 
         index = new Counter();
         index.setCount(0);
@@ -121,31 +138,31 @@ public class TicketFragment extends Fragment implements ITicketView {
     }
 
     @Override
-    public void displayFlightsListNoTranspher(List<Flight> list) {
+    public void display___Flights__No__Tranpher__With__Full___Straight(List<Flight> list) {
 
         FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
 
-        loaderTo.loadNoTransphers(list, container, index, listner);
+        loaderTo.loadNoTransphers(list, container, index, listner, Constants.STRAIGHT);
     }
 
     @Override
-    public void displayEmptyFlightsListNoTranspher() {
+    public void display__Flights__NO___Transpher__Empty___Straight() {
 
     }
 
     @Override
-    public void displayFlightsListTransphers(List<Flight> list) {
+    public void display__Flights__No___Transphers__Full___Back(List<Flight> list) {
 
         FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
 
         loaderBack.addTripsBackInfo(container, index);
 
-        loaderBack.loadNoTransphers(list, container, index, listner);
+        loaderBack.loadNoTransphers(list, container, index, listner, Constants.BACK);
 
     }
 
     @Override
-    public void displayEmptyFlightsListTransphers() {
+    public void display__Flights__No___Transphers__Empty___Back() {
 
     }
 
@@ -163,7 +180,7 @@ public class TicketFragment extends Fragment implements ITicketView {
     }
 
     @Override
-    public void showAlertPlaceCount(final List<UUID> list) {
+    public void showAlertPlaceCount() {
 
         AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
         b.setTitle(R.string.choose_place_count);
@@ -177,9 +194,9 @@ public class TicketFragment extends Fragment implements ITicketView {
 
                 dialog.dismiss();
 
-                int placeCount = which + 1;
+                setPlaceCount( which + 1 );
 
-                showAlertShure(list, placeCount);
+                showAlertShure();
             }
 
         });
@@ -187,7 +204,7 @@ public class TicketFragment extends Fragment implements ITicketView {
         b.show();
     }
 
-    private void showAlertShure(final List<UUID> list, final int placeCount) {
+    private void showAlertShure() {
 
         AlertDialog.Builder  ad = new AlertDialog.Builder(getActivity());
         ad.setMessage(R.string.book_shure);
@@ -195,7 +212,7 @@ public class TicketFragment extends Fragment implements ITicketView {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                bookingPresenter.book(list, placeCount);
+                bookingPresenter.book(listIdsStraight, listIdsBack, placeCount);
             }
         });
 
@@ -208,6 +225,52 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         ad.setCancelable(false);
         ad.show();
+    }
+
+
+    private List<UUID> listIdsStraight = new ArrayList<>();
+
+    private List<UUID> listIdsBack = new ArrayList<>();
+
+    private int placeCount;
+
+
+    public void putIdsStraight(List<UUID> list){
+
+        listIdsStraight.addAll(list);
+    }
+
+    public void deleteIdsStraight(List<UUID> list){
+
+        listIdsStraight.removeAll(list);
+    }
+
+    public void putIdsSBack(List<UUID> list){
+
+        listIdsBack.addAll(list);
+    }
+
+    public void deleteIdsBack(List<UUID> list){
+
+        listIdsBack.removeAll(list);
+    }
+
+    public void setPlaceCount(int count){
+
+        placeCount = count;
+    }
+
+    public void showButtonBuy(){
+
+        btnBook.setVisibility(View.VISIBLE);
+    }
+
+    public void hideButtonBuy(){
+
+        if (listIdsStraight.size() == 0) {
+
+            btnBook.setVisibility(View.GONE);
+        }
     }
 
 }
