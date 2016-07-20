@@ -31,5 +31,6 @@
     <string name="book_shure">Are you shure you want book this tickets?</string>
     <string name="search_tickets">Search Tickets</string>
     <string name="booking_history">Booking History</string>
+    <string name="buy">Book</string>
 
 </resources>

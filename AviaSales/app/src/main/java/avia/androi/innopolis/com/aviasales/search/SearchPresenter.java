@@ -45,19 +45,19 @@ public class SearchPresenter implements ISearchPresenter {
 
             if (listNoTranphers.isEmpty()) {
 
-                iView.displayEmptyFlightsListNoTranspher();
+                iView.display__Flights__NO___Transpher__Empty___Straight();
             } else {
 
-                iView.displayFlightsListNoTranspher(listNoTranphers);
+                iView.display___Flights__No__Tranpher__With__Full___Straight(listNoTranphers);
             }
 
             if (listBackTranphers.isEmpty()){
 
-                iView.displayEmptyFlightsListTransphers();
+                iView.display__Flights__No___Transphers__Empty___Back();
             }
             else{
 
-                iView.displayFlightsListTransphers(listBackTranphers);
+                iView.display__Flights__No___Transphers__Full___Back(listBackTranphers);
             }
 
         }
