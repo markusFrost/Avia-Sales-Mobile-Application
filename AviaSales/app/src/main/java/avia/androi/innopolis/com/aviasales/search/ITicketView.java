@@ -17,4 +17,6 @@ public interface ITicketView extends UILoader{
     void displayEmptyFlightsListTransphers();
 
     void goToBookingHistory(List<Booking> listBooking);
+
+    void showAlertPlaceCount();
 }

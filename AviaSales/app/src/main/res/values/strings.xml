@@ -27,5 +27,6 @@
     <string name="trips_back">Trips back</string>
     <string name="clear">Clear</string>
     <string name="booking_number">Booking №</string>
+    <string name="choose_place_count">Please choose place count</string>
 
 </resources>

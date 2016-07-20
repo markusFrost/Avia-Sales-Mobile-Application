@@ -1,6 +1,8 @@
 package avia.androi.innopolis.com.aviasales.search;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -82,6 +84,8 @@ public class TicketFragment extends Fragment implements ITicketView {
         pb = (ProgressBar) view.findViewById(R.id.search_progress_bar);
         hideProgressBar();
 
+        showAlertPlaceCount();
+
         return view;
     }
 
@@ -147,5 +151,28 @@ public class TicketFragment extends Fragment implements ITicketView {
         Fragment fragment = BookingHistoryFragment.newInstance(listBooking);
 
         FragmentUtils.setFragment(fragment, (BaseActivity) getActivity());
+    }
+
+    @Override
+    public void showAlertPlaceCount() {
+
+        AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+        b.setTitle(R.string.choose_place_count);
+
+        String [] type = {"1", "2" , "3", "4" , "5" ,"6" , "7"};
+
+        b.setItems(type, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+
+                int placeCount = which + 1;
+            }
+
+        });
+
+        b.show();
     }
 }
