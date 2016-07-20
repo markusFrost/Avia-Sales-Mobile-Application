@@ -16,7 +16,6 @@ import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.models.ViewItem;
-import avia.androi.innopolis.com.aviasales.objects.AppContext;
 import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
 import avia.androi.innopolis.com.aviasales.utils.HelpUtils;
 import avia.androi.innopolis.com.aviasales.utils.TimeUtils;
@@ -78,7 +77,7 @@ public abstract class BaseFlightsLoader {
             item.setTripType(tripType);
 
 
-            clickLayout.setTag(R.id.action_settings, AppContext.getGson().toJson(item));
+            clickLayout.setTag(R.id.action_settings, item);
 
            /* clickLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -221,7 +220,8 @@ public abstract class BaseFlightsLoader {
             item.setTripType(tripType);
 
 
-            clickLayout.setTag(R.id.action_settings, AppContext.getGson().toJson(item));
+            //clickLayout.setTag(R.id.action_settings, AppContext.getGson().toJson(item));
+            clickLayout.setTag(R.id.action_settings, item);
 
             clickLayout.setOnClickListener(listner);
 
@@ -232,20 +232,21 @@ public abstract class BaseFlightsLoader {
             index.increment();
             container.addView(line, index.getCount());
 
-            listViews.add(flight_view);
+            listViews.add(clickLayout);
         }
 
         for (View v : listViews){
 
-            String json = (String) v.getTag(R.id.action_settings);
+            //String json = (String) v.getTag(R.id.action_settings);
 
-            ViewItem item = AppContext.getGson().fromJson(json, ViewItem.class);
+            //ViewItem item = AppContext.getGson().fromJson(json, ViewItem.class);
+            ViewItem item = (ViewItem) v.getTag(R.id.action_settings);
 
             item.setListViews(listViews);
 
-            json =  AppContext.getGson().toJson(item);
+            //json =  AppContext.getGson().toJson(item);
 
-            v.setTag(R.id.action_settings, json);
+            v.setTag(R.id.action_settings, item);
         }
     }
 
