@@ -212,7 +212,7 @@ public class TicketFragment extends Fragment implements ITicketView {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                bookingPresenter.book(listIdsStraight, placeCount);
+                bookingPresenter.book(listIdsStraight, listIdsBack, placeCount);
             }
         });
 
@@ -267,7 +267,10 @@ public class TicketFragment extends Fragment implements ITicketView {
 
     public void hideButtonBuy(){
 
-        btnBook.setVisibility(View.GONE);
+        if (listIdsStraight.size() == 0) {
+
+            btnBook.setVisibility(View.GONE);
+        }
     }
 
 }

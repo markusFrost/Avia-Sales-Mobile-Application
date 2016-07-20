@@ -11,7 +11,17 @@ public class BookingRequest {
 
     private UUID bookingId;
 
-    private List<UUID> listFlightIds;
+    private List<UUID> listFlightIdsStraight;
+
+    private List<UUID> listFlightIdsBack;
+
+    public List<UUID> getListFlightIdsBack() {
+        return listFlightIdsBack;
+    }
+
+    public void setListFlightIdsBack(List<UUID> listFlightIdsBack) {
+        this.listFlightIdsBack = listFlightIdsBack;
+    }
 
     private long dateBooking;
 
@@ -32,12 +42,12 @@ public class BookingRequest {
         this.userId = userId;
     }
 
-    public List<UUID> getListFlightIds() {
-        return listFlightIds;
+    public List<UUID> getListFlightIdsStraight() {
+        return listFlightIdsStraight;
     }
 
-    public void setListFlightIds(List<UUID> listFlightIds) {
-        this.listFlightIds = listFlightIds;
+    public void setListFlightIdsStraight(List<UUID> listFlightIdsStraight) {
+        this.listFlightIdsStraight = listFlightIdsStraight;
     }
 
     public int getPlaceCount() {
