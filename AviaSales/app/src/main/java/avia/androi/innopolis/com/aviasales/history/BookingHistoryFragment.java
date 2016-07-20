@@ -1,6 +1,8 @@
 package avia.androi.innopolis.com.aviasales.history;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,11 +13,13 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
 import java.util.List;
+import java.util.UUID;
 
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.cancel.UndoBookingPresenter;
 import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.Counter;
+import avia.androi.innopolis.com.aviasales.objects.OnViewClickListner;
 import avia.androi.innopolis.com.aviasales.utils.NetworkUtils;
 import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
 import avia.androi.innopolis.com.aviasales.view.BookingHistoryViewLoader;
@@ -30,12 +34,14 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
     Counter index;
     LinearLayout container;
 
+    OnViewClickListner listner;
+
     public BookingHistoryFragment(List<Booking> listBooking){
 
         this.listBooking = listBooking;
     }
 
-    private UndoBookingPresenter mPresenter;
+    private UndoBookingPresenter undoBookingPresenter;
 
     public BookingHistoryFragment(){}
 
@@ -46,7 +52,9 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup containerViewGroup, Bundle savedInstanceState) {
 
-        mPresenter = new UndoBookingPresenter(this);
+        undoBookingPresenter = new UndoBookingPresenter(this);
+
+        listner = new OnViewClickListner(getActivity());
 
         View view = inflater.inflate(R.layout.fragment_tickets, null);
 
@@ -87,13 +95,34 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
     public void displayBookingHistoryList(List<Booking> listBooking) {
 
         BookingHistoryViewLoader loader = new BookingHistoryViewLoader(getActivity());
-        loader.loadBookHistory(listBooking, container, index);
+        loader.loadBookHistory(listBooking, container, index, listner);
     }
 
     @Override
-    public void displayEmptyBookingHistoryList() {
+    public void showUndoBookingDialog(final UUID bookingId) {
+
+        AlertDialog.Builder  ad = new AlertDialog.Builder(getActivity());
+        ad.setMessage(R.string.book_shure_undo);
+        ad.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                undoBookingPresenter.undoBooking(bookingId);
+            }
+        });
+
+        ad.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        ad.setCancelable(false);
+        ad.show();
 
     }
+
 
     @Override
     public void loadBookingHistoryFromCash() {

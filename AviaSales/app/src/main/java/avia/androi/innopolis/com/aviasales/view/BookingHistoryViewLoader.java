@@ -14,6 +14,7 @@ import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.City;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.objects.Constants;
+import avia.androi.innopolis.com.aviasales.objects.OnViewClickListner;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 
 public class BookingHistoryViewLoader extends BaseFlightsLoader {
@@ -26,7 +27,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
         this.activity = activity;
     }
 
-    private void createBookingTitle(Booking booking, LinearLayout container, Counter index){
+    private void createBookingTitle(Booking booking, LinearLayout container, Counter index, OnViewClickListner listner){
 
         String msg = activity.getResources().getString(R.string.booking_number) +
                 " " + booking.getBookingId().toString();
@@ -42,6 +43,9 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
         tv.setTextColor(Color.RED);
         tv.setText(msg);
 
+        tv.setTag(R.id.search_button_book, booking.getBookingId());
+
+        tv.setOnClickListener(listner);
 
         container.addView(viewTranspherType, index.getCount());
         index.increment();
@@ -69,14 +73,15 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
         container.addView(helpView, index.getCount());
     }
 
-    public void loadBookHistory(List<Booking> list, LinearLayout container, Counter index){
+    public void loadBookHistory(List<Booking> list, LinearLayout container, Counter index, OnViewClickListner listner){
 
+        if (list == null) {return;}
         for (Booking booking : list){
 
             City cityFrom = booking.getListFlightsTo().get(0).getCityFrom();
             City cityTo = booking.getListFlightsTo().get(booking.getListFlightsTo().size() - 1).getCityTo();
 
-            createBookingTitle(booking, container, index);
+            createBookingTitle(booking, container, index, listner);
 
             createCityDirection(cityFrom, cityTo, container, index);
 
