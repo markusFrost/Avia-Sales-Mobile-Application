@@ -13,6 +13,7 @@ import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.City;
 import avia.androi.innopolis.com.aviasales.models.Counter;
+import avia.androi.innopolis.com.aviasales.objects.Constants;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 
 public class BookingHistoryViewLoader extends BaseFlightsLoader {
@@ -79,13 +80,13 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
 
             createCityDirection(cityFrom, cityTo, container, index);
 
-            designTripWIthTranspers(booking.getListFlightsTo(), container, index);
+            designTripWIthTranspers(booking.getListFlightsTo(), container, index ,null, Constants.STRAIGHT);
 
             if ( booking.getListFlightsBack() != null && !booking.getListFlightsBack().isEmpty()) {
 
                 createCityDirection(cityTo, cityFrom, container, index);
 
-                designTripWIthTranspers(booking.getListFlightsBack(), container, index);
+                designTripWIthTranspers(booking.getListFlightsBack(), container, index, null, Constants.BACK);
             }
         }
     }

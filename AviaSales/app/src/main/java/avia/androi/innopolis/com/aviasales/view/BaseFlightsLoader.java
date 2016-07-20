@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Counter;
@@ -16,6 +18,7 @@ import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.models.ViewItem;
 import avia.androi.innopolis.com.aviasales.objects.AppContext;
 import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
+import avia.androi.innopolis.com.aviasales.utils.HelpUtils;
 import avia.androi.innopolis.com.aviasales.utils.TimeUtils;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 
@@ -96,7 +99,7 @@ public abstract class BaseFlightsLoader {
         }
     }
 
-    public  void loadWithTransphers(List<List<Flight>> listFlight, LinearLayout container, Counter index){
+    public  void loadWithTransphers(List<List<Flight>> listFlight, LinearLayout container, Counter index,  OnLayoutClickListner listner, int tripType){
 
         View helpView = ViewUtils.createHelpView(activity);
 
@@ -131,13 +134,15 @@ public abstract class BaseFlightsLoader {
             index.increment();
             container.addView(line, index.getCount());
 
-            designTripWIthTranspers(list, container, index);
+            designTripWIthTranspers(list, container, index, listner, tripType);
 
             ticketsCount++;
         }
     }
 
-    public  void designTripWIthTranspers( List<Flight> listFlights, LinearLayout container, Counter index){
+    public  void designTripWIthTranspers( List<Flight> listFlights, LinearLayout container, Counter index,  OnLayoutClickListner listner,int tripType){
+
+        List<View>  listViews = new ArrayList<>();
 
         for (int i = 0; i < listFlights.size(); i++){
 
@@ -203,11 +208,44 @@ public abstract class BaseFlightsLoader {
             }
 
 
+
+            LinearLayout clickLayout = (LinearLayout) flight_view.findViewById(R.id.search_flight_container);
+
+            ViewItem item = new ViewItem();
+            List<UUID> listIds = HelpUtils.getListIds(listFlights);
+            item.setListIds(listIds);
+
+            item.setPlaceCount(20);
+
+            item.setClicked(false);
+            item.setTripType(tripType);
+
+
+            clickLayout.setTag(R.id.action_settings, AppContext.getGson().toJson(item));
+
+            clickLayout.setOnClickListener(listner);
+
+
             //  flight_view.setTag(FLIGHTS_IDS, HelpUtils.getListIds(listFlights));
 
             container.addView(flight_view, index.getCount());
             index.increment();
             container.addView(line, index.getCount());
+
+            listViews.add(flight_view);
+        }
+
+        for (View v : listViews){
+
+            String json = (String) v.getTag(R.id.action_settings);
+
+            ViewItem item = AppContext.getGson().fromJson(json, ViewItem.class);
+
+            item.setListViews(listViews);
+
+            json =  AppContext.getGson().toJson(item);
+
+            v.setTag(R.id.action_settings, json);
         }
     }
 

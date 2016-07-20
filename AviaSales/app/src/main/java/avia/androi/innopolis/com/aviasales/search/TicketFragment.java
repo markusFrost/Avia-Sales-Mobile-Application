@@ -29,7 +29,7 @@ import avia.androi.innopolis.com.aviasales.objects.Constants;
 import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
-import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
+import avia.androi.innopolis.com.aviasales.view.FlightsInStraightDirectionLoader;
 
 public class TicketFragment extends Fragment implements ITicketView {
 
@@ -140,7 +140,7 @@ public class TicketFragment extends Fragment implements ITicketView {
     @Override
     public void display___Flights__No__Tranpher__With__Full___Straight(List<Flight> list) {
 
-        FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
+        FlightsInStraightDirectionLoader loaderTo = new FlightsInStraightDirectionLoader(getActivity());
 
         loaderTo.loadNoTransphers(list, container, index, listner, Constants.STRAIGHT);
     }
@@ -164,6 +164,14 @@ public class TicketFragment extends Fragment implements ITicketView {
     @Override
     public void display__Flights__No___Transphers__Empty___Back() {
 
+    }
+
+    @Override
+    public void display___Flights__WITH__Tranpher____Full___Straight(List<List<Flight>> list) {
+
+        FlightsInStraightDirectionLoader loader = new FlightsInStraightDirectionLoader(getActivity());
+
+        loader.loadWithTransphers(list, container, index, listner, Constants.STRAIGHT);
     }
 
     @Override

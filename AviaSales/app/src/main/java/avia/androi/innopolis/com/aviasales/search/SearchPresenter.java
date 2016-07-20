@@ -1,5 +1,6 @@
 package avia.androi.innopolis.com.aviasales.search;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import avia.androi.innopolis.com.aviasales.models.Flight;
@@ -48,17 +49,28 @@ public class SearchPresenter implements ISearchPresenter {
                 iView.display__Flights__NO___Transpher__Empty___Straight();
             } else {
 
-                iView.display___Flights__No__Tranpher__With__Full___Straight(listNoTranphers);
+               // iView.display___Flights__No__Tranpher__With__Full___Straight(listNoTranphers);
+
+                List<List<Flight>> listMain = new ArrayList<>();
+
+                listNoTranphers.add(listNoTranphers.get(listNoTranphers.size() - 1));
+                for (int i = 1; i <= 3; i++){
+
+                    listMain.add(listNoTranphers);
+
+                }
+
+                iView.display___Flights__WITH__Tranpher____Full___Straight(listMain);
             }
 
-            if (listBackTranphers.isEmpty()){
+            /*if (listBackTranphers.isEmpty()){
 
                 iView.display__Flights__No___Transphers__Empty___Back();
             }
             else{
 
                 iView.display__Flights__No___Transphers__Full___Back(listBackTranphers);
-            }
+            }*/
 
         }
 
