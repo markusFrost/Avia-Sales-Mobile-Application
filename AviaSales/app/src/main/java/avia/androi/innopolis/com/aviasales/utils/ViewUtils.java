@@ -26,7 +26,7 @@ public class ViewUtils {
     private static void createBhBookingName(Activity activity, Booking booking, LinearLayout container, Counter index){
 
         String msg = activity.getResources().getString(R.string.booking_number) +
-                " " + booking.getId().toString();
+                " " + booking.getBookingId().toString();
 
         View helpView = ViewUtils.createHelpView(activity);
 

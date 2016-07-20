@@ -14,11 +14,9 @@ import android.widget.TextView;
 
 import avia.androi.innopolis.com.aviasales.MainActivity;
 import avia.androi.innopolis.com.aviasales.R;
-import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.models.User;
 import avia.androi.innopolis.com.aviasales.register.RegisterFragment;
 import avia.androi.innopolis.com.aviasales.search.TicketFragment;
-import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
@@ -124,7 +122,13 @@ public class LoginFragment extends Fragment implements ILoginView {
     public void onLoginSuccess() {
 
         Fragment fragment = TicketFragment.newInstance();
-        FragmentUtils.setFragment(fragment, (BaseActivity) getActivity());
+
+        if (getActivity() instanceof MainActivity){
+
+            MainActivity mainActivity = (MainActivity) getActivity();
+
+            mainActivity.showFragment(fragment);
+        }
     }
 
     @Override

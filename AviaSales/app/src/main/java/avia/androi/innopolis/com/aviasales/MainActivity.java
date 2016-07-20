@@ -28,6 +28,8 @@ public class MainActivity extends BaseActivity
 
     private  NavigationView navigationView;
 
+    private Fragment fragment = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +92,7 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Fragment fragment = null;
+
 
         if (id == R.id.nav_search_flight) {
 
@@ -116,6 +118,7 @@ public class MainActivity extends BaseActivity
 
         if (fragment != null) {
 
+            this.fragment = fragment;
             FragmentUtils.setFragment(fragment, MainActivity.this);
         }
     }
@@ -136,5 +139,10 @@ public class MainActivity extends BaseActivity
         tvEmail.setText(user.getEmail());
 
         navigationView.addHeaderView(view);
+    }
+
+    public Fragment getFragment(){
+
+        return fragment;
     }
 }
