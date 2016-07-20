@@ -25,9 +25,7 @@ public class BookingPresenter implements IBookingPresenter {
         mBookingLoader = new BookingLoader(this);
         BookingRequest request = new BookingRequest();
 
-
-        //request.setUserId(ShPrefUtils.getUser().getId());
-        request.setUserId(UUID.fromString("99a3c93a-25f2-4dc4-802c-e17f290df021"));
+        request.setUserId(ShPrefUtils.getUser().getId());
 
         request.setDateBooking(System.currentTimeMillis());
 

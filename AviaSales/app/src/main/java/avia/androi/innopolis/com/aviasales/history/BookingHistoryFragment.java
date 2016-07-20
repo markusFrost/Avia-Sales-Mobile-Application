@@ -68,7 +68,7 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
 
             displayBookingHistoryList(listBooking);
         }
-        else if (NetworkUtils.isConnected()) {
+        else if (!NetworkUtils.isConnected()) {
 
             listBooking = ShPrefUtils.getListBooking();
             displayBookingHistoryList(listBooking);
@@ -93,6 +93,14 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
     @Override
     public void displayEmptyBookingHistoryList() {
 
+    }
+
+    @Override
+    public void loadBookingHistoryFromCash() {
+
+
+        listBooking = ShPrefUtils.getListBooking();
+        displayBookingHistoryList(listBooking);
     }
 
     @Override

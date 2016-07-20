@@ -10,4 +10,6 @@ public interface IBookingHistoryView extends UILoader {
     void displayBookingHistoryList(List<Booking> listBooking);
 
     void displayEmptyBookingHistoryList();
+
+    void loadBookingHistoryFromCash();
 }

@@ -46,11 +46,15 @@ public class BookingHistoryPresenter implements IBookingHistoryPresenter {
     public void onServerFail() {
 
         iView.hideProgressBar();
+
+        iView.loadBookingHistoryFromCash();
     }
 
     @Override
     public void onConnectionFail() {
 
         iView.hideProgressBar();
+
+        iView.loadBookingHistoryFromCash();
     }
 }
