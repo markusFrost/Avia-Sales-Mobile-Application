@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
+import avia.androi.innopolis.com.aviasales.login.LoginFragment;
 import avia.androi.innopolis.com.aviasales.main_presenters.IMainView;
 import avia.androi.innopolis.com.aviasales.main_presenters.MainActivityPresenter;
 import avia.androi.innopolis.com.aviasales.models.User;
@@ -51,19 +52,8 @@ public class MainActivity extends BaseActivity
 
         mPresenter.chooseRightFragment();
 
-       /* BookingRequest request = new BookingRequest();
-
-        request.setUserId(UUID.fromString("638da681-2688-493a-9f5b-dff07e8cdcb2"));
-
-        List<UUID> listIds = new ArrayList<>();
-
-        listIds.add(UUID.fromString("c039581f-e70b-4a3e-83f6-82b253d091d5"));
-        listIds.add(UUID.fromString("5ae8c137-0c96-4eb5-8232-f2ce8872ae6a"));
-
-        request.setDateBooking(System.currentTimeMillis());
-        request.setListFlightIds(listIds);
-
-        request.setPlaceCount(1);
+       /* UserRequest request = new UserRequest();
+        request.setUserId(UUID.fromString("b5f25f49-28b2-4df3-8d87-3499b3e7fc2e"));
 
         String json = AppContext.getGson().toJson(request);
 
@@ -122,6 +112,10 @@ public class MainActivity extends BaseActivity
         }
         else if (id == R.id.nav_logout) {
 
+            ShPrefUtils.setListBooking(null);
+            ShPrefUtils.setUser(null);
+
+            fragment = LoginFragment.newInstance();
         }
 
         showFragment(fragment);
