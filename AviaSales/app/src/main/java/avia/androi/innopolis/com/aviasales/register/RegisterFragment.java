@@ -117,6 +117,8 @@ public class RegisterFragment extends Fragment implements IRegistrationView {
             MainActivity mainActivity = (MainActivity) getActivity();
 
             mainActivity.showFragment(fragment);
+
+            mainActivity.initializeNavDrawer();
         }
     }
 

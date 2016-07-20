@@ -20,6 +20,8 @@ public class MainActivityPresenter {
 
         User user = ShPrefUtils.getUser();
 
+        user = null;
+
         if (user == null){
 
             Fragment fragment = LoginFragment.newInstance();
