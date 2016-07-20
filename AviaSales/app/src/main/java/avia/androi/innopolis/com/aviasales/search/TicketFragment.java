@@ -138,7 +138,7 @@ public class TicketFragment extends Fragment implements ITicketView {
     }
 
     @Override
-    public void display___Flights__No__Tranpher__With__Full___Straight(List<Flight> list) {
+    public void showNotTrasph(List<Flight> list) {
 
         FlightsInStraightDirectionLoader loaderTo = new FlightsInStraightDirectionLoader(getActivity());
 
@@ -146,33 +146,38 @@ public class TicketFragment extends Fragment implements ITicketView {
     }
 
     @Override
-    public void display__Flights__NO___Transpher__Empty___Straight() {
+    public void showEmptyFlights() {
 
     }
 
     @Override
-    public void display__Flights__No___Transphers__Full___Back(List<Flight> list) {
+    public void showNoTrasphBack(List<Flight> listBackTranphers) {
 
         FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
 
         loaderBack.addTripsBackInfo(container, index);
 
-        loaderBack.loadNoTransphers(list, container, index, listner, Constants.BACK);
-
+        loaderBack.loadNoTransphers(listBackTranphers, container, index, listner, Constants.BACK);
     }
 
     @Override
-    public void display__Flights__No___Transphers__Empty___Back() {
+    public void showWithTrasph(List<List<Flight>> listTo) {
 
+        FlightsInStraightDirectionLoader loaderTo = new FlightsInStraightDirectionLoader(getActivity());
+
+        loaderTo.loadWithTransphers (listTo, container, index, listner, Constants.STRAIGHT);
     }
 
     @Override
-    public void display___Flights__WITH__Tranpher____Full___Straight(List<List<Flight>> list) {
+    public void showWithTrasphBack(List<List<Flight>> listBack) {
 
-        FlightsInStraightDirectionLoader loader = new FlightsInStraightDirectionLoader(getActivity());
+        FlightsInBackDirectionLoader loaderBack = new FlightsInBackDirectionLoader(getActivity());
 
-        loader.loadWithTransphers(list, container, index, listner, Constants.STRAIGHT);
+        loaderBack.addTripsBackInfo(container, index);
+
+        loaderBack.loadWithTransphers(listBack, container, index, listner, Constants.BACK);
     }
+
 
     @Override
     public void goToBookingHistory(List<Booking> listBooking) {
@@ -211,6 +216,8 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         b.show();
     }
+
+
 
     private void showAlertShure() {
 

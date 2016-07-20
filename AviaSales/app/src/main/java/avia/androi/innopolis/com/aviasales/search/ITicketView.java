@@ -8,18 +8,19 @@ import avia.androi.innopolis.com.aviasales.models.Flight;
 
 public interface ITicketView extends UILoader{
 
-    void display___Flights__No__Tranpher__With__Full___Straight(List<Flight> list);
+    void showNotTrasph(List<Flight> list);
 
-    void display__Flights__NO___Transpher__Empty___Straight();
+    void showNoTrasphBack(List<Flight> listBackTranphers);
 
-    void display__Flights__No___Transphers__Full___Back(List<Flight> list);
+    void showWithTrasph (List<List<Flight>> listTo);
 
-    void display__Flights__No___Transphers__Empty___Back();
+    void showWithTrasphBack (List<List<Flight>> listBack);
 
-    void display___Flights__WITH__Tranpher____Full___Straight(List<List<Flight>> list);
+    void showEmptyFlights();
 
     void goToBookingHistory(List<Booking> listBooking);
 
     void showAlertPlaceCount();
+
 
 }

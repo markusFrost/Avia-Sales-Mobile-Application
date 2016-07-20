@@ -20,9 +20,9 @@ public class MainActivityPresenter {
 
         User user = ShPrefUtils.getUser();
 
-        user = new User();
+       /* user = new User();
         user.setEmail("dfd");
-        user.setName("dfddf");
+        user.setName("dfddf");*/
 
         if (user == null){
 
