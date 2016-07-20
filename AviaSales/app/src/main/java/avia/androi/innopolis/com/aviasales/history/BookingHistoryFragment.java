@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 import java.util.List;
 
 import avia.androi.innopolis.com.aviasales.R;
+import avia.androi.innopolis.com.aviasales.cancel.UndoBookingPresenter;
 import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.utils.NetworkUtils;
@@ -34,6 +35,8 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
         this.listBooking = listBooking;
     }
 
+    private UndoBookingPresenter mPresenter;
+
     public BookingHistoryFragment(){}
 
 
@@ -42,6 +45,8 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup containerViewGroup, Bundle savedInstanceState) {
+
+        mPresenter = new UndoBookingPresenter(this);
 
         View view = inflater.inflate(R.layout.fragment_tickets, null);
 

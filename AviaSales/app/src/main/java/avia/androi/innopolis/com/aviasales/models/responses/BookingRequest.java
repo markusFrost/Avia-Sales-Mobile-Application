@@ -9,6 +9,8 @@ public class BookingRequest {
 
     private int placeCount;
 
+    private UUID bookingId;
+
     private List<UUID> listFlightIds;
 
     private long dateBooking;
@@ -44,5 +46,13 @@ public class BookingRequest {
 
     public void setPlaceCount(int placeCount) {
         this.placeCount = placeCount;
+    }
+
+    public UUID getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(UUID bookingId) {
+        this.bookingId = bookingId;
     }
 }
