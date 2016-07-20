@@ -28,5 +28,6 @@
     <string name="clear">Clear</string>
     <string name="booking_number">Booking №</string>
     <string name="choose_place_count">Please choose place count</string>
+    <string name="book_shure">Are you shure you want book this tickets?</string>
 
 </resources>

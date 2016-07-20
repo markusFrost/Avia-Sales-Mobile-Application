@@ -1,14 +1,15 @@
 package avia.androi.innopolis.com.aviasales.models.responses;
 
 import java.util.List;
+import java.util.UUID;
 
 public class BookingRequest {
 
-    private String userId;
+    private UUID userId;
 
     private int placeCount;
 
-    private List<String> listFlightIds;
+    private List<UUID> listFlightIds;
 
     private long dateBooking;
 
@@ -20,19 +21,20 @@ public class BookingRequest {
         this.dateBooking = dateBooking;
     }
 
-    public String getUserId() {
+
+    public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 
-    public List<String> getListFlightIds() {
+    public List<UUID> getListFlightIds() {
         return listFlightIds;
     }
 
-    public void setListFlightIds(List<String> listFlightIds) {
+    public void setListFlightIds(List<UUID> listFlightIds) {
         this.listFlightIds = listFlightIds;
     }
 

@@ -14,16 +14,17 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
 import java.util.List;
+import java.util.UUID;
 
+import avia.androi.innopolis.com.aviasales.MainActivity;
 import avia.androi.innopolis.com.aviasales.R;
-import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.booking.BookingPresenter;
 import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
 import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
-import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
+import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.FlightsInBackDirectionLoader;
 import avia.androi.innopolis.com.aviasales.view.FlightsInRightDirectionLoader;
@@ -39,12 +40,16 @@ public class TicketFragment extends Fragment implements ITicketView {
     ProgressBar pb;
     ScrollView mScrollView;
 
+    OnLayoutClickListner listner;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup containerViewGroup, Bundle savedInstanceState) {
 
         seachPresenter = new SearchPresenter(this);
         bookingPresenter = new BookingPresenter(this);
+
+        listner = new OnLayoutClickListner(getActivity());
 
         view = inflater.inflate(R.layout.fragment_tickets, null);
 
@@ -84,7 +89,7 @@ public class TicketFragment extends Fragment implements ITicketView {
         pb = (ProgressBar) view.findViewById(R.id.search_progress_bar);
         hideProgressBar();
 
-        showAlertPlaceCount();
+        //showAlertPlaceCount();
 
         return view;
     }
@@ -120,7 +125,7 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         FlightsInRightDirectionLoader loaderTo = new FlightsInRightDirectionLoader(getActivity());
 
-        loaderTo.loadNoTransphers(list, container, index);
+        loaderTo.loadNoTransphers(list, container, index, listner);
     }
 
     @Override
@@ -135,9 +140,8 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         loaderBack.addTripsBackInfo(container, index);
 
-        loaderBack.loadNoTransphers(list, container, index);
+        loaderBack.loadNoTransphers(list, container, index, listner);
 
-        bookingPresenter.book();
     }
 
     @Override
@@ -150,11 +154,16 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         Fragment fragment = BookingHistoryFragment.newInstance(listBooking);
 
-        FragmentUtils.setFragment(fragment, (BaseActivity) getActivity());
+        if (getActivity() instanceof MainActivity){
+
+            MainActivity mainActivity = (MainActivity) getActivity();
+
+            mainActivity.showFragment(fragment);
+        }
     }
 
     @Override
-    public void showAlertPlaceCount() {
+    public void showAlertPlaceCount(final List<UUID> list) {
 
         AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
         b.setTitle(R.string.choose_place_count);
@@ -169,10 +178,36 @@ public class TicketFragment extends Fragment implements ITicketView {
                 dialog.dismiss();
 
                 int placeCount = which + 1;
+
+                showAlertShure(list, placeCount);
             }
 
         });
 
         b.show();
     }
+
+    private void showAlertShure(final List<UUID> list, final int placeCount) {
+
+        AlertDialog.Builder  ad = new AlertDialog.Builder(getActivity());
+        ad.setMessage(R.string.book_shure);
+        ad.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                bookingPresenter.book(list, placeCount);
+            }
+        });
+
+        ad.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        ad.setCancelable(false);
+        ad.show();
+    }
+
 }

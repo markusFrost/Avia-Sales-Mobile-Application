@@ -13,6 +13,7 @@ import java.util.List;
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.models.Flight;
+import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
 import avia.androi.innopolis.com.aviasales.utils.TimeUtils;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 
@@ -24,7 +25,7 @@ public abstract class BaseFlightsLoader {
 
         this.activity = activity;
     }
-    public  void loadNoTransphers(List<Flight> listFlight, LinearLayout container, Counter index){
+    public  void loadNoTransphers(List<Flight> listFlight, LinearLayout container, Counter index, OnLayoutClickListner listner){
 
         View helpView = ViewUtils.createHelpView(activity);
 
@@ -63,6 +64,21 @@ public abstract class BaseFlightsLoader {
 
             tvPricePerTicket.setText(flight.getPricePerTicket() + "");
             tvFreePlaceCount.setText(flight.getFreePlaceCount() + "");
+
+            LinearLayout clickLayout = (LinearLayout) flight_view.findViewById(R.id.search_flight_container);
+
+            clickLayout.setTag(R.id.action_settings, flight.getFlightId());
+
+           /* clickLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    UUID flightId = (UUID) view.getTag(R.id.action_settings);
+                    Toast.makeText(activity,flightId.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
+            clickLayout.setOnClickListener(listner);
 
             //flight_view.setTag(FLIGHT_ID, flight.getId());
 
@@ -177,6 +193,7 @@ public abstract class BaseFlightsLoader {
 
                 layoutParams.height = 1;
             }
+
 
             //  flight_view.setTag(FLIGHTS_IDS, HelpUtils.getListIds(listFlights));
 

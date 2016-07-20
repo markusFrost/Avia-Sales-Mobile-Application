@@ -2,6 +2,7 @@ package avia.androi.innopolis.com.aviasales.booking;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import avia.androi.innopolis.com.aviasales.models.responses.BookingRequest;
 import avia.androi.innopolis.com.aviasales.models.responses.BookingResponse;
@@ -20,17 +21,17 @@ public class BookingPresenter implements IBookingPresenter {
 
 
     @Override
-    public void book() {
+    public void book(List<UUID> list, int placeCount) {
 
         mBookingLoader = new BookingLoader(this);
         BookingRequest request = new BookingRequest();
 
-        request.setUserId("638da681-2688-493a-9f5b-dff07e8cdcb2");
+        request.setUserId(UUID.fromString("638da681-2688-493a-9f5b-dff07e8cdcb2"));
 
-        List<String> listIds = new ArrayList<>();
+        List<UUID> listIds = new ArrayList<>();
 
-        listIds.add("c039581f-e70b-4a3e-83f6-82b253d091d5");
-        listIds.add("5ae8c137-0c96-4eb5-8232-f2ce8872ae6a");
+        listIds.add(UUID.fromString("c039581f-e70b-4a3e-83f6-82b253d091d5"));
+        listIds.add(UUID.fromString("5ae8c137-0c96-4eb5-8232-f2ce8872ae6a"));
 
         request.setDateBooking(System.currentTimeMillis());
         request.setListFlightIds(listIds);
@@ -38,6 +39,8 @@ public class BookingPresenter implements IBookingPresenter {
         request.setPlaceCount(1);
 
         mBookingLoader.load(request);
+
+        iView.showProgressBar();
     }
 
     @Override
@@ -49,8 +52,12 @@ public class BookingPresenter implements IBookingPresenter {
 
             ShPrefUtils.setListBooking(response.getListBooking());
 
+            iView.hideProgressBar();
+
             iView.goToBookingHistory(response.getListBooking());
         }
+
+
     }
 
     @Override

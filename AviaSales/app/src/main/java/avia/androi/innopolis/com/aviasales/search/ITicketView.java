@@ -1,6 +1,7 @@
 package avia.androi.innopolis.com.aviasales.search;
 
 import java.util.List;
+import java.util.UUID;
 
 import avia.androi.innopolis.com.aviasales.interfaces.UILoader;
 import avia.androi.innopolis.com.aviasales.models.Booking;
@@ -18,5 +19,6 @@ public interface ITicketView extends UILoader{
 
     void goToBookingHistory(List<Booking> listBooking);
 
-    void showAlertPlaceCount();
+    void showAlertPlaceCount(List<UUID> list);
+
 }
