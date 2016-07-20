@@ -23,9 +23,6 @@ public class OnLayoutClickListner implements LinearLayout.OnClickListener {
     @Override
     public void onClick(View view) {
 
-       /* String json = (String) view.getTag(R.id.action_settings);
-
-        ViewItem item = AppContext.getGson().fromJson(json, ViewItem.class);*/
 
         ViewItem item = (ViewItem) view.getTag(R.id.action_settings);
 
