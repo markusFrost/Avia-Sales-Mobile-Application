@@ -78,8 +78,9 @@ public class OnLayoutClickListner implements LinearLayout.OnClickListener {
                     v.setBackgroundResource(R.drawable.flight_item_selector);
                 }
             }
-
-           // view.setBackgroundResource(R.drawable.flight_item_selector);
+            else {
+                view.setBackgroundResource(R.drawable.flight_item_selector);
+            }
             item.setClicked(false);
         }
         else{
@@ -98,8 +99,9 @@ public class OnLayoutClickListner implements LinearLayout.OnClickListener {
                     v.setBackgroundColor(Color.GREEN);
                 }
             }
-
-            //view.setBackgroundColor(Color.GREEN);
+            else {
+                view.setBackgroundColor(Color.GREEN);
+            }
             item.setClicked(true);
         }
 
