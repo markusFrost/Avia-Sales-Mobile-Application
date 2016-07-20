@@ -27,6 +27,8 @@ public class UndoBookingPresenter implements IUndoBookingPresenter {
         request.setBookingId(UUID.fromString("0289e81d-3347-409d-bc4f-fe236157a30f"));
 
         mLoader.load(request);
+
+        iView.showProgressBar();
     }
 
     @Override
