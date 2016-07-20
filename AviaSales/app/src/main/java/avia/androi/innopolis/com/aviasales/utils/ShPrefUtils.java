@@ -24,9 +24,16 @@ public class ShPrefUtils {
         SharedPreferences sd = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sd.edit();
 
-        String json = AppContext.getGson().toJson(user);
+        if (user != null) {
 
-        editor.putString(Constants.KEY_USER, json);
+            String json = AppContext.getGson().toJson(user);
+
+            editor.putString(Constants.KEY_USER, json);
+        }
+        else{
+
+            editor.putString(Constants.KEY_USER, null);
+        }
         editor.commit();
     }
 
@@ -51,9 +58,15 @@ public class ShPrefUtils {
         SharedPreferences sd = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sd.edit();
 
-        String json = AppContext.getGson().toJson(list);
+        if (list == null){
+            editor.putString(Constants.KEY_BOOKING_LIST, null);
+        }
+        else {
 
-        editor.putString(Constants.KEY_BOOKING_LIST, json);
+            String json = AppContext.getGson().toJson(list);
+
+            editor.putString(Constants.KEY_BOOKING_LIST, json);
+        }
         editor.commit();
     }
 

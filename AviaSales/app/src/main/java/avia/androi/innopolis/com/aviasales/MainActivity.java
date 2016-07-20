@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
 import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
+import avia.androi.innopolis.com.aviasales.login.LoginFragment;
 import avia.androi.innopolis.com.aviasales.main_presenters.IMainView;
 import avia.androi.innopolis.com.aviasales.main_presenters.MainActivityPresenter;
 import avia.androi.innopolis.com.aviasales.models.User;
@@ -111,6 +112,10 @@ public class MainActivity extends BaseActivity
         }
         else if (id == R.id.nav_logout) {
 
+            ShPrefUtils.setListBooking(null);
+            ShPrefUtils.setUser(null);
+
+            fragment = LoginFragment.newInstance();
         }
 
         showFragment(fragment);
