@@ -35,15 +35,28 @@ public class OnLayoutClickListner implements LinearLayout.OnClickListener {
 
             if (fragment instanceof TicketFragment){
 
-                if (item.isClicked()) {
+                if (!item.isClicked()) {
 
-                    ((TicketFragment) fragment).putIdsStraight(item.getListIds());
-                    ((TicketFragment) fragment).hideButtonBuy();
+                    if (item.getTripType() == Constants.STRAIGHT) {
+
+                        ((TicketFragment) fragment).putIdsStraight(item.getListIds());
+                    }else{
+
+                        ((TicketFragment) fragment).putIdsSBack(item.getListIds());
+                    }
+                    ((TicketFragment) fragment).showButtonBuy();
                 }
                 else {
 
-                    ((TicketFragment) fragment).deleteIdsStraight(item.getListIds());
-                    ((TicketFragment) fragment).showButtonBuy();
+                    if (item.getTripType() == Constants.STRAIGHT) {
+
+                        ((TicketFragment) fragment).deleteIdsStraight(item.getListIds());
+                    }
+                    else{
+
+                        ((TicketFragment) fragment).deleteIdsBack(item.getListIds());
+                    }
+                    ((TicketFragment) fragment).hideButtonBuy();
                 }
             }
         }
