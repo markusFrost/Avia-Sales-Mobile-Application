@@ -128,6 +128,8 @@ public class LoginFragment extends Fragment implements ILoginView {
             MainActivity mainActivity = (MainActivity) getActivity();
 
             mainActivity.showFragment(fragment);
+
+            mainActivity.initializeNavDrawer();
         }
     }
 

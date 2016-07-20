@@ -1,6 +1,5 @@
 package avia.androi.innopolis.com.aviasales.booking;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,22 +20,17 @@ public class BookingPresenter implements IBookingPresenter {
 
 
     @Override
-    public void book(List<UUID> list, int placeCount) {
+    public void book(List<UUID> listIds, int placeCount) {
 
         mBookingLoader = new BookingLoader(this);
         BookingRequest request = new BookingRequest();
 
-        request.setUserId(UUID.fromString("638da681-2688-493a-9f5b-dff07e8cdcb2"));
-
-        List<UUID> listIds = new ArrayList<>();
-
-        listIds.add(UUID.fromString("c039581f-e70b-4a3e-83f6-82b253d091d5"));
-        listIds.add(UUID.fromString("5ae8c137-0c96-4eb5-8232-f2ce8872ae6a"));
+        request.setUserId(ShPrefUtils.getUser().getId());
 
         request.setDateBooking(System.currentTimeMillis());
         request.setListFlightIds(listIds);
 
-        request.setPlaceCount(1);
+        request.setPlaceCount(placeCount);
 
         mBookingLoader.load(request);
 

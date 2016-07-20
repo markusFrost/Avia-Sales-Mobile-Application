@@ -49,7 +49,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
 
     private void createCityDirection(City cityFrom, City cityTo,  LinearLayout container, Counter index){
 
-        String msg = cityFrom.getName() + " from " + cityTo.getName();
+        String msg = cityFrom.getName() + " to " + cityTo.getName();
 
         View helpView = ViewUtils.createHelpView(activity);
 
@@ -73,7 +73,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
         for (Booking booking : list){
 
             City cityFrom = booking.getListFlightsTo().get(0).getCityFrom();
-            City cityTo = booking.getListFlightsTo().get(booking.getListFlightsTo().size() - 1).getCityFrom();
+            City cityTo = booking.getListFlightsTo().get(booking.getListFlightsTo().size() - 1).getCityTo();
 
             createBookingTitle(booking, container, index);
 
@@ -81,7 +81,7 @@ public class BookingHistoryViewLoader extends BaseFlightsLoader {
 
             designTripWIthTranspers(booking.getListFlightsTo(), container, index);
 
-            if (!booking.getListFlightsBack().isEmpty()) {
+            if ( booking.getListFlightsBack() != null && !booking.getListFlightsBack().isEmpty()) {
 
                 createCityDirection(cityTo, cityFrom, container, index);
 

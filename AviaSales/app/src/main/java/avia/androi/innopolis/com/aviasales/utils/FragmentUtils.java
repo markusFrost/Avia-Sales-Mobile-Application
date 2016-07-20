@@ -5,8 +5,10 @@ import android.app.FragmentManager;
 
 import avia.androi.innopolis.com.aviasales.R;
 import avia.androi.innopolis.com.aviasales.base.BaseActivity;
+import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
 import avia.androi.innopolis.com.aviasales.login.LoginFragment;
 import avia.androi.innopolis.com.aviasales.register.RegisterFragment;
+import avia.androi.innopolis.com.aviasales.search.TicketFragment;
 
 public class FragmentUtils {
 
@@ -17,6 +19,14 @@ public class FragmentUtils {
         }
         else if (fragment instanceof LoginFragment){
             id = R.string.authorisation;
+        }
+        else if (fragment instanceof TicketFragment){
+
+            id = R.string.search_tickets;
+        }
+        else if (fragment instanceof BookingHistoryFragment){
+
+            id = R.string.booking_history;
         }
 
         if (id != 0) {
