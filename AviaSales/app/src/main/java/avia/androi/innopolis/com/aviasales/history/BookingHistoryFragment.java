@@ -22,6 +22,7 @@ import avia.androi.innopolis.com.aviasales.models.Counter;
 import avia.androi.innopolis.com.aviasales.objects.OnViewClickListner;
 import avia.androi.innopolis.com.aviasales.utils.NetworkUtils;
 import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
+import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.BookingHistoryViewLoader;
 
 public class BookingHistoryFragment extends Fragment implements IBookingHistoryView {
@@ -79,7 +80,14 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
         else if (!NetworkUtils.isConnected()) {
 
             listBooking = ShPrefUtils.getListBooking();
-            displayBookingHistoryList(listBooking);
+            if (listBooking == null || listBooking.isEmpty()){
+
+                showEmptyBookingHistory();
+            }
+            else {
+
+                displayBookingHistoryList(listBooking);
+            }
         }
         else {
 
@@ -97,7 +105,7 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
         BookingHistoryViewLoader loader = new BookingHistoryViewLoader(getActivity());
         loader.loadBookHistory(listBooking, container, index, listner);
 
-        if (listBooking!= null || listBooking.size() == 0){
+        if (listBooking == null || listBooking.size() == 0){
 
             container.removeAllViews();
         }
@@ -134,8 +142,30 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
 
 
         listBooking = ShPrefUtils.getListBooking();
-        displayBookingHistoryList(listBooking);
+
+        if (listBooking == null || listBooking.isEmpty()){
+
+            showEmptyBookingHistory();
+        }
+        else{
+
+            displayBookingHistoryList(listBooking);
+        }
+
     }
+
+    @Override
+    public void showEmptyBookingHistory() {
+
+        View emptyView = getActivity().getLayoutInflater().inflate(R.layout.view_empty_result, null);
+
+        View line = ViewUtils.createHelpView(getActivity());
+
+        container.addView(emptyView, index.getCount());
+        index.increment();
+        container.addView(line,index.getCount() );
+    }
+
 
     @Override
     public void showProgressBar() {

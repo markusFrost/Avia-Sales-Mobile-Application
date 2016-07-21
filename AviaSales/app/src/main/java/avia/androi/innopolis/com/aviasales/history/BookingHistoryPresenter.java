@@ -1,5 +1,8 @@
 package avia.androi.innopolis.com.aviasales.history;
 
+import java.util.List;
+
+import avia.androi.innopolis.com.aviasales.models.Booking;
 import avia.androi.innopolis.com.aviasales.models.responses.BookingResponse;
 import avia.androi.innopolis.com.aviasales.models.responses.UserRequest;
 import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
@@ -34,9 +37,18 @@ public class BookingHistoryPresenter implements IBookingHistoryPresenter {
 
             BookingResponse response = (BookingResponse) object;
 
-            ShPrefUtils.setListBooking(response.getListBooking());
+            List<Booking> listBooking = response.getListBooking();
 
-            iView.displayBookingHistoryList(response.getListBooking());
+            ShPrefUtils.setListBooking(listBooking);
+
+            if (listBooking == null || listBooking.isEmpty()){
+
+                iView.showEmptyBookingHistory();
+            }
+            else {
+
+                iView.displayBookingHistoryList(listBooking);
+            }
 
             iView.hideProgressBar();
         }
