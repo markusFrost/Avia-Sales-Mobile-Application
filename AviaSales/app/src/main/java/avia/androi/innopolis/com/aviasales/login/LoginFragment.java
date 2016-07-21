@@ -131,6 +131,13 @@ public class LoginFragment extends Fragment implements ILoginView {
     }
 
     @Override
+    public void setErrorMessage(String message) {
+
+        mTextViewError.setVisibility(View.VISIBLE);
+        mTextViewError.setText(message);
+    }
+
+    @Override
     public void showProgressBar() {
 
         mLoginLinearLayout.setVisibility(View.GONE);

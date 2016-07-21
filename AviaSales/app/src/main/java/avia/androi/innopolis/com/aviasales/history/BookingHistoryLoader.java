@@ -57,7 +57,7 @@ public class BookingHistoryLoader implements ILoader<UserRequest> {
 
                 } catch (IOException e) {
 
-                    iPresenter.onServerFail();
+                    iPresenter.onConnectionFail();
                 }
 
             }

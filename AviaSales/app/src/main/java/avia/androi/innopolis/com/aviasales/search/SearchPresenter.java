@@ -94,7 +94,7 @@ public class SearchPresenter implements ISearchPresenter {
     }
 
     @Override
-    public void onServerFail() {
+    public void onServerFail(String message) {
 
         iView.hideProgressBar();
         iView.showEmptyFlights();

@@ -75,7 +75,7 @@ public class BookingLoader implements ILoader<BookingRequest> {
 
                 } catch (IOException e) {
 
-                    iPresenter.onServerFail();
+                    iPresenter.onConnectionFail();
                 }
 
             }

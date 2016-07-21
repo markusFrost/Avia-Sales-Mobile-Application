@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import avia.androi.innopolis.com.aviasales.interfaces.IAviaService;
 import avia.androi.innopolis.com.aviasales.interfaces.ILoader;
-import avia.androi.innopolis.com.aviasales.models.ServerResponse;
+import avia.androi.innopolis.com.aviasales.models.responses.UserResponse;
 import avia.androi.innopolis.com.aviasales.models.User;
 import avia.androi.innopolis.com.aviasales.objects.AppContext;
 import avia.androi.innopolis.com.aviasales.objects.Constants;
@@ -47,13 +47,20 @@ public class RegistrationLoader implements ILoader<User> {
                 try {
                     String json = response.body().string();
 
-                    ServerResponse serverResponse = AppContext.getGson().fromJson(json, ServerResponse.class);
+                    UserResponse userResponse = AppContext.getGson().fromJson(json, UserResponse.class);
 
-                    iPresenter.onServerSuccess(serverResponse.getUser());
+                    if (userResponse.getCode() != 201){
+
+                        iPresenter.onServerFail(userResponse.getMessage());
+                    }
+                    else {
+
+                        iPresenter.onServerSuccess(userResponse.getUser());
+                    }
 
                 } catch (IOException e) {
 
-                    iPresenter.onServerFail();
+                    iPresenter.onConnectionFail();
                 }
 
             }

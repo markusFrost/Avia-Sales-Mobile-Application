@@ -47,7 +47,7 @@ public class UndoBookingPresenter implements IUndoBookingPresenter {
     }
 
     @Override
-    public void onServerFail() {
+    public void onServerFail(String message) {
 
         iView.hideProgressBar();
     }

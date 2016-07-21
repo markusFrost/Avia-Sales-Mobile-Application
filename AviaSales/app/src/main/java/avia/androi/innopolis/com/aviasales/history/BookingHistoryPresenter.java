@@ -55,7 +55,7 @@ public class BookingHistoryPresenter implements IBookingHistoryPresenter {
     }
 
     @Override
-    public void onServerFail() {
+    public void onServerFail(String message) {
 
         iView.hideProgressBar();
 

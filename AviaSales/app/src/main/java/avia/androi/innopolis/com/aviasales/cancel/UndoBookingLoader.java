@@ -55,7 +55,7 @@ public class UndoBookingLoader implements ILoader<BookingRequest> {
 
                 } catch (IOException e) {
 
-                    iPresenter.onServerFail();
+                    iPresenter.onConnectionFail();
                 }
 
             }
