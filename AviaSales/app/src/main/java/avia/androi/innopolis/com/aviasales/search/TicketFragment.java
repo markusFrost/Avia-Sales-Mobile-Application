@@ -184,7 +184,7 @@ public class TicketFragment extends Fragment implements ITicketView {
 
                 if (request.getDateBackReturn() != 0){
 
-                    tvDateTo.setText(TimeUtils.convertMillsToStringDate(request.getDateBackReturn()));
+                    tvDateBack.setText(TimeUtils.convertMillsToStringDate(request.getDateBackReturn()));
                 }
             }
             else{
@@ -492,7 +492,9 @@ public class TicketFragment extends Fragment implements ITicketView {
     FlightRequest request;
     private void formDate(){
 
-       /* FlightRequest request = new FlightRequest();
+        if (validateDate()) {
+
+            request = new FlightRequest();
 
         request.setCityFrom(editCityFrom.getText().toString());
         request.setCityTo(editCityTo.getText().toString());
@@ -500,7 +502,6 @@ public class TicketFragment extends Fragment implements ITicketView {
         request.setDateBackReturn(TimeUtils.convertStringToMills(tvDateBack.getText().toString()));
         request.setRoundTrip(cb.isChecked());
 
-        request.setDateDeparture(1468935531506L);*/
 
        // if (validateDate()) {
 
@@ -512,16 +513,18 @@ public class TicketFragment extends Fragment implements ITicketView {
             request.setDateBackReturn(1469197800000L);
             request.setRoundTrip(true);*/
 
-         request = new FlightRequest();
+        /* request = new FlightRequest();
 
         request.setCityFrom("Volgograd");
         request.setCityTo("Kazan");
-        request.setDateDeparture(1469110200000L);
+        request.setDateDeparture(1469110200000L);*/
+
 
             container.removeAllViews();
             addSearchPanel();
 
             seachPresenter.search(request);
+        }
         //}
 
     }

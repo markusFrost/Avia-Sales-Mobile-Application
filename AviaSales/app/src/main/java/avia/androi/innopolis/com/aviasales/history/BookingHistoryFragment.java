@@ -102,6 +102,10 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
     @Override
     public void displayBookingHistoryList(List<Booking> listBooking) {
 
+        container.removeAllViews();
+
+        index.setCount(0);
+
         BookingHistoryViewLoader loader = new BookingHistoryViewLoader(getActivity());
         loader.loadBookHistory(listBooking, container, index, listner);
 
