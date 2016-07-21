@@ -8,7 +8,7 @@
     <application
         android:allowBackup="true"
         android:name=".objects.AppContext"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/avia_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

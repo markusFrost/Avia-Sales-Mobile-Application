@@ -504,13 +504,19 @@ public class TicketFragment extends Fragment implements ITicketView {
 
        // if (validateDate()) {
 
-            request = new FlightRequest();
+           /* request = new FlightRequest();
 
             request.setCityFrom("Moscow");
             request.setCityTo("Tokio");
             request.setDateDeparture(1468935531506L);
             request.setDateBackReturn(1469197800000L);
-            request.setRoundTrip(true);
+            request.setRoundTrip(true);*/
+
+         request = new FlightRequest();
+
+        request.setCityFrom("Volgograd");
+        request.setCityTo("Kazan");
+        request.setDateDeparture(1469110200000L);
 
             container.removeAllViews();
             addSearchPanel();
