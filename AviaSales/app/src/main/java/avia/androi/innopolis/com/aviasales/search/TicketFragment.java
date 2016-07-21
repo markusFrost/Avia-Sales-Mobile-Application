@@ -33,6 +33,7 @@ import avia.androi.innopolis.com.aviasales.models.Flight;
 import avia.androi.innopolis.com.aviasales.models.responses.FlightRequest;
 import avia.androi.innopolis.com.aviasales.objects.Constants;
 import avia.androi.innopolis.com.aviasales.objects.OnLayoutClickListner;
+import avia.androi.innopolis.com.aviasales.utils.TimeUtils;
 import avia.androi.innopolis.com.aviasales.utils.ViewUtils;
 import avia.androi.innopolis.com.aviasales.view.DatePickerBack;
 import avia.androi.innopolis.com.aviasales.view.DatePickerTo;
@@ -56,6 +57,7 @@ public class TicketFragment extends Fragment implements ITicketView {
 
     private LinearLayout searchLayoutTo;
     private LinearLayout searchLayoutBack;
+    View searchPanel;
 
 
     @Nullable
@@ -69,7 +71,7 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         view = inflater.inflate(R.layout.fragment_tickets, null);
 
-        View searchPanel = inflater.inflate(R.layout.view_search_panel, containerViewGroup, false);
+        searchPanel = inflater.inflate(R.layout.view_search_panel, containerViewGroup, false);
 
         btnBook = (Button) searchPanel.findViewById(R.id.search_button_book);
 
@@ -88,11 +90,7 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         container = (LinearLayout) view.findViewById(R.id.search_container);
 
-        View line = ViewUtils.createHelpView(getActivity());
-
-        container.addView(searchPanel, index.getCount());
-        index.increment();
-        container.addView(line,index.getCount() );
+        addSearchPanel();
 
         Button btnSearch = (Button) searchPanel.findViewById(R.id.search_button_ok);
 
@@ -114,6 +112,84 @@ public class TicketFragment extends Fragment implements ITicketView {
         //showAlertPlaceCount();
 
         return view;
+    }
+
+    private boolean validateDate(){
+
+        String cityFrom = editCityFrom.getText().toString();
+
+        if (cityFrom == null || cityFrom.isEmpty()){
+
+            return false;
+        }
+
+        String cityTo = editCityTo.getText().toString();
+
+        if (cityTo == null || cityTo.isEmpty()){
+
+            return false;
+        }
+
+        long timeTo = TimeUtils.convertStringToMills(tvDateTo.getText().toString());
+
+        if (timeTo == 0){
+
+            return false;
+        }
+
+        if (cb.isChecked()){
+
+            long timeBack = TimeUtils.convertStringToMills(tvDateBack.getText().toString());
+
+            if (timeBack == 0){
+
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    private void addSearchPanel() {
+
+        index.setCount(0);
+        View line = ViewUtils.createHelpView(getActivity());
+
+        container.addView(searchPanel, index.getCount());
+        index.increment();
+        container.addView(line,index.getCount() );
+
+
+        if (request != null){
+
+            if (request.getCityFrom() != null){
+
+                editCityFrom.setText(request.getCityFrom());
+            }
+            if (request.getCityTo() != null){
+
+                editCityTo.setText(request.getCityTo());
+            }
+
+            if (request.getDateDeparture() != 0){
+
+                tvDateTo.setText(TimeUtils.convertMillsToStringDate(request.getDateDeparture()));
+            }
+
+            if (request.isRoundTrip()){
+
+                cb.setChecked(true);
+
+                if (request.getDateBackReturn() != 0){
+
+                    tvDateTo.setText(TimeUtils.convertMillsToStringDate(request.getDateBackReturn()));
+                }
+            }
+            else{
+
+                cb.setChecked(false);
+            }
+        }
     }
 
     private TextView tvDateTo;
@@ -404,6 +480,7 @@ public class TicketFragment extends Fragment implements ITicketView {
         tvDateBack.setText(msg);
     }
 
+    FlightRequest request;
     private void formDate(){
 
        /* FlightRequest request = new FlightRequest();
@@ -416,17 +493,21 @@ public class TicketFragment extends Fragment implements ITicketView {
 
         request.setDateDeparture(1468935531506L);*/
 
-        FlightRequest request = new FlightRequest();
+       // if (validateDate()) {
 
-        request.setCityFrom("Moscow");
-        request.setCityTo("Tokio");
-        request.setDateDeparture(1468935531506L);
-        request.setDateBackReturn(1469197800000L);
-        request.setRoundTrip(true);
+            request = new FlightRequest();
 
-        seachPresenter.search(request);
+            request.setCityFrom("Moscow");
+            request.setCityTo("Tokio");
+            request.setDateDeparture(1468935531506L);
+            request.setDateBackReturn(1469197800000L);
+            request.setRoundTrip(true);
 
-        seachPresenter.search(request);
+            container.removeAllViews();
+            addSearchPanel();
+
+            seachPresenter.search(request);
+        //}
 
     }
 

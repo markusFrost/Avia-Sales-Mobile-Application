@@ -15,6 +15,13 @@ public class TimeUtils {
         return format.format(date);
     }
 
+    public static String convertMillsToStringDate (long mills){
+
+        Date date = new Date(mills);
+        Format format = new SimpleDateFormat("dd.MM.yyyy");
+        return format.format(date);
+    }
+
     public static long convertStringToMills (String value){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
