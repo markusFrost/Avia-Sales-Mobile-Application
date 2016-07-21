@@ -114,6 +114,8 @@ public class TicketFragment extends Fragment implements ITicketView {
         return view;
     }
 
+
+
     private boolean validateDate(){
 
         String cityFrom = editCityFrom.getText().toString();
@@ -292,6 +294,13 @@ public class TicketFragment extends Fragment implements ITicketView {
     @Override
     public void showEmptyFlights() {
 
+        View emptyView = getActivity().getLayoutInflater().inflate(R.layout.view_empty_result, null);
+
+        View line = ViewUtils.createHelpView(getActivity());
+
+        container.addView(emptyView, index.getCount());
+        index.increment();
+        container.addView(line,index.getCount() );
     }
 
     @Override

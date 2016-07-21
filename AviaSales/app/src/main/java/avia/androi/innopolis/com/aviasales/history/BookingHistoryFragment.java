@@ -97,7 +97,7 @@ public class BookingHistoryFragment extends Fragment implements IBookingHistoryV
         BookingHistoryViewLoader loader = new BookingHistoryViewLoader(getActivity());
         loader.loadBookHistory(listBooking, container, index, listner);
 
-        if (listBooking.size() == 0){
+        if (listBooking!= null || listBooking.size() == 0){
 
             container.removeAllViews();
         }

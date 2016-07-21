@@ -97,11 +97,13 @@ public class SearchPresenter implements ISearchPresenter {
     public void onServerFail() {
 
         iView.hideProgressBar();
+        iView.showEmptyFlights();
     }
 
     @Override
     public void onConnectionFail() {
 
         iView.hideProgressBar();
+        iView.showEmptyFlights();
     }
 }

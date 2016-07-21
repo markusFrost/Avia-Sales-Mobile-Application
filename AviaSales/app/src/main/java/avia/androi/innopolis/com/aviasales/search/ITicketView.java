@@ -23,4 +23,5 @@ public interface ITicketView extends UILoader{
     void showAlertPlaceCount();
 
 
+
 }
