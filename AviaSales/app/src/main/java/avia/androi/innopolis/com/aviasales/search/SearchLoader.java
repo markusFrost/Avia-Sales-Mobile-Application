@@ -70,7 +70,7 @@ public class SearchLoader implements ILoader<FlightRequest> {
 
                 } catch (IOException e) {
 
-                    iPresenter.onServerFail();
+                    iPresenter.onConnectionFail();
                 }
 
             }

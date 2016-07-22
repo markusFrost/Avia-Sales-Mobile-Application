@@ -13,4 +13,6 @@ public interface IBookingHistoryView extends UILoader {
     void showUndoBookingDialog(UUID bookingId);
 
     void loadBookingHistoryFromCash();
+
+    void showEmptyBookingHistory();
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import avia.androi.innopolis.com.aviasales.interfaces.IAviaService;
 import avia.androi.innopolis.com.aviasales.interfaces.ILoader;
-import avia.androi.innopolis.com.aviasales.models.ServerResponse;
+import avia.androi.innopolis.com.aviasales.models.responses.UserResponse;
 import avia.androi.innopolis.com.aviasales.models.User;
 import avia.androi.innopolis.com.aviasales.objects.AppContext;
 import avia.androi.innopolis.com.aviasales.objects.Constants;
@@ -46,13 +46,20 @@ public class LoginLoader implements ILoader<User> {
                 try {
                     String json = response.body().string();
 
-                     ServerResponse resp = AppContext.getGson().fromJson(json, ServerResponse.class);
+                     UserResponse resp = AppContext.getGson().fromJson(json, UserResponse.class);
 
-                    iPresenter.onServerSuccess(resp.getUser());
+                    if (resp.getCode() != 200){
+
+                        iPresenter.onServerFail(resp.getMessage());
+                    }
+                    else {
+
+                        iPresenter.onServerSuccess(resp.getUser());
+                    }
 
                 } catch (IOException e) {
 
-                    iPresenter.onServerFail();
+                    iPresenter.onConnectionFail();
                 }
 
             }

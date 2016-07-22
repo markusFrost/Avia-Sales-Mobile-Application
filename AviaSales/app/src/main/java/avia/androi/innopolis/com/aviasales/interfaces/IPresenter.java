@@ -7,7 +7,7 @@ public interface IPresenter {
 
     void onServerSuccess(Object object);
 
-    void onServerFail();
+    void onServerFail(String message);
 
     void onConnectionFail();
 }

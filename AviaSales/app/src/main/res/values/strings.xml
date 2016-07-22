@@ -33,5 +33,11 @@
     <string name="booking_history">Booking History</string>
     <string name="buy">Book</string>
     <string name="book_shure_undo">Are you shure you want to undo this book?</string>
+    <string name="dateDepart">Date</string>
+    <string name="dateDepartBack">Data(back)</string>
+
+    <string name="choose_date">Choose date</string>
+    <string name="ready">Ready</string>
+    <string name="empty_result">Empty result</string>
 
 </resources>

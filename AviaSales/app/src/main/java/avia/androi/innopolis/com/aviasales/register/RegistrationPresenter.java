@@ -53,10 +53,10 @@ public class RegistrationPresenter implements IRegistrationPresenter {
     }
 
     @Override
-    public void onServerFail() {
+    public void onServerFail(String message) {
 
         iView.hideProgressBar();
-        iView.setErrorMessage(R.string.errorCanNotRegister);
+        iView.setErrorMessage(message);
     }
 
     @Override

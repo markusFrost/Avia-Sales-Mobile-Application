@@ -46,11 +46,13 @@ public class HelpUtils {
 
         List<List<Flight>> listFlights = new ArrayList<>();
 
-        for (List<Flight> list : array){
+        if (array != null) {
+            for (List<Flight> list : array) {
 
-            if (list.size() > 1){
+                if (list.size() > 1) {
 
-                listFlights.add(list);
+                    listFlights.add(list);
+                }
             }
         }
 

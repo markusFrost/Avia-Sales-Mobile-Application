@@ -7,4 +7,5 @@ public interface UILoader {
     void hideProgressBar();
 
     void setErrorMessage(int msgId);
+
 }

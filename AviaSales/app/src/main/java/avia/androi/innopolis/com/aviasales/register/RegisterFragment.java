@@ -53,6 +53,16 @@ public class RegisterFragment extends Fragment implements IRegistrationView {
 
         mButtonOk = (Button) view.findViewById(R.id.registrationButtonOk);
 
+        mButtonCancel = (Button) view.findViewById(R.id.registrationButtonCancel);
+
+        mButtonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getActivity().finish();
+            }
+        });
+
 
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +130,14 @@ public class RegisterFragment extends Fragment implements IRegistrationView {
 
             mainActivity.initializeNavDrawer();
         }
+    }
+
+    @Override
+    public void setErrorMessage(String message) {
+
+        mTextViewError.setVisibility(View.VISIBLE);
+
+        mTextViewError.setText(message);
     }
 
     @Override

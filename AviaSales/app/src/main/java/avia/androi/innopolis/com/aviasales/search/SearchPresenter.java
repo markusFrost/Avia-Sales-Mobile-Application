@@ -43,19 +43,21 @@ public class SearchPresenter implements ISearchPresenter {
 
             List<Flight> listBackTranphers = HelpUtils.buildListFlightsFromOneSizeList(listBack);
 
-            if (listNoTranphers.isEmpty()) {
+            if (
+                    (listTo == null || listTo.isEmpty()) &&
+                            (listBack == null || listBack.isEmpty())
+                    ){
 
                 iView.showEmptyFlights();
-            } else {
+            }
+
+            if (!listNoTranphers.isEmpty()) {
+
 
                 iView.showNotTrasph(listNoTranphers);
             }
 
-            if (listBackTranphers.isEmpty()){
-
-                iView.showEmptyFlights();
-            }
-            else{
+            if (!listBackTranphers.isEmpty()){
 
                 iView.showNoTrasphBack(listBackTranphers);
             }
@@ -94,14 +96,16 @@ public class SearchPresenter implements ISearchPresenter {
     }
 
     @Override
-    public void onServerFail() {
+    public void onServerFail(String message) {
 
         iView.hideProgressBar();
+        iView.showEmptyFlights();
     }
 
     @Override
     public void onConnectionFail() {
 
         iView.hideProgressBar();
+        iView.showEmptyFlights();
     }
 }

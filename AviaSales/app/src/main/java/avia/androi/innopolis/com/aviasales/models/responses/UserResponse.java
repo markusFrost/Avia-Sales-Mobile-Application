@@ -1,6 +1,8 @@
-package avia.androi.innopolis.com.aviasales.models;
+package avia.androi.innopolis.com.aviasales.models.responses;
 
-public class ServerResponse {
+import avia.androi.innopolis.com.aviasales.models.User;
+
+public class UserResponse {
 
     private User user;
 

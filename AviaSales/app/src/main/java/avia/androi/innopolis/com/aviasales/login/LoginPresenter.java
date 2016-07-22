@@ -39,10 +39,10 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void onServerFail() {
+    public void onServerFail(String message) {
 
         iView.hideProgressBar();
-        iView.setErrorMessage(R.string.errorCanNotLogin);
+        iView.setErrorMessage(message);
     }
 
     @Override
