@@ -1,36 +1,45 @@
 package avia.androi.innopolis.com.aviasales;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import avia.androi.innopolis.com.aviasales.base.BaseActivity;
+import avia.androi.innopolis.com.aviasales.history.BookingHistoryFragment;
+import avia.androi.innopolis.com.aviasales.login.LoginFragment;
+import avia.androi.innopolis.com.aviasales.main_presenters.IMainView;
+import avia.androi.innopolis.com.aviasales.main_presenters.MainActivityPresenter;
+import avia.androi.innopolis.com.aviasales.models.User;
+import avia.androi.innopolis.com.aviasales.search.TicketFragment;
+import avia.androi.innopolis.com.aviasales.utils.FragmentUtils;
+import avia.androi.innopolis.com.aviasales.utils.ShPrefUtils;
+
+public class MainActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, IMainView {
+
+    private MainActivityPresenter mPresenter;
+
+    private  NavigationView navigationView;
+
+    private Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPresenter = new MainActivityPresenter(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -38,9 +47,20 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mPresenter.chooseRightFragment();
+
+       /* UserRequest request = new UserRequest();
+        request.setUserId(UUID.fromString("b5f25f49-28b2-4df3-8d87-3499b3e7fc2e"));
+
+        String json = AppContext.getGson().toJson(request);
+
+        int len = json.length();*/
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -80,22 +100,61 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        if (id == R.id.nav_search_flight) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            fragment = TicketFragment.newInstance();
         }
+        else if (id == R.id.nav_booking_history) {
+
+            fragment = BookingHistoryFragment.newInstance();
+        }
+        else if (id == R.id.nav_logout) {
+
+            ShPrefUtils.setListBooking(null);
+            ShPrefUtils.setUser(null);
+
+            fragment = LoginFragment.newInstance();
+        }
+
+        showFragment(fragment);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showFragment(Fragment fragment) {
+
+        if (fragment != null) {
+
+            this.fragment = fragment;
+            FragmentUtils.setFragment(fragment, MainActivity.this);
+        }
+    }
+
+    @Override
+    public void initializeNavDrawer() {
+
+        View view = getLayoutInflater().inflate(R.layout.nav_header_main, null);
+
+        TextView tvName = (TextView) view.findViewById(R.id.nav_header_name);
+
+        TextView tvEmail = (TextView) view.findViewById(R.id.nav_header_email);
+
+        User user = ShPrefUtils.getUser();
+
+        tvName.setText(user.getName());
+
+        tvEmail.setText(user.getEmail());
+
+        navigationView.addHeaderView(view);
+    }
+
+    public Fragment getFragment(){
+
+        return fragment;
     }
 }
