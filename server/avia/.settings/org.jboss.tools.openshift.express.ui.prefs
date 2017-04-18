@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+org.jboss.tools.openshift.ApplicationId=5788e9e87628e1d0c5000143
+org.jboss.tools.openshift.ApplicationName=avia
+org.jboss.tools.openshift.Connection=https\://oleg.b.ignatov%40gmail.com@openshift.redhat.com
+org.jboss.tools.openshift.DeployFolder=deployments
+org.jboss.tools.openshift.Domain=aviasales
+org.jboss.tools.openshift.RemoteName=origin
